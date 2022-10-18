@@ -1,0 +1,31 @@
+<header>
+    <div class="header">
+        <div class="center">
+            <a href="/"><img src="/images/PLV_nuevo.png" alt="Logo" width="70px"></a>
+            <img src="/images/Qatar2022.png" alt="" width="100px">
+        </div>
+        <div class="menu_mobile_bt">
+                <div class="mbt_line"></div>
+                <div class="mbt_line"></div>
+                <div class="mbt_line"></div>
+        </div>
+        
+        <div class="menu_over">
+            <div class="menu_desplegable">
+                <div class="title">
+                    
+                    <a class="" href="/user/login">Login</a>
+                    <a class="" href = "/user/register">Register</a>
+                    <% if (locals.isLogged) { %>
+                        <form action="/user/logout" method="GET" class="formulario_logout">
+                            <button type="submit" class="Buton-logout">
+                                DESLOGUEATE DE TU CUENTA
+                            </button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</header>

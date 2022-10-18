@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../includes/head") %>
+<body>
+    <%- include ("../includes/header") %>
+    <main>
+        <section id="section_login">
+            <div class="register">
+                <img src="/images/Qatar2022.png" alt="" width="300px">
+                <p class="title_login">Registrate:</p>
+                <div class="a_login_register">
+                    <a class="menu_user border inactive" href="/user/login"> LOG-IN</a>
+                    <a class="menu_user active" href="/user/register"> REGISTRATE</a>
+                </div>
+
+                <form  method="POST" class="form_register" action="/user/register" enctype="multipart/form-data" id="form_register">
+                    <div class="flex">
+                        <div class="flex_column">
+                            <div class="flex_input">
+                                <input type="text" name="email" id="email" value="<%= locals.oldData ? oldData.email : null %>"  placeholder="Correo electronico">
+                                <i class="fas fa-exclamation-circle none"></i>
+                            </div>
+                            <p class="error"></p>
+                            <% if (locals.errors && errors.email) { %>
+                                <p class="error"> 
+                                    <%= errors.email.msg %> 
+                                </p>
+                            <% } %>
+                        </div>
+                        <div class="flex_column">
+                            <div class="flex_input">
+                                <input type="text" name="userName" id="userName" value="<%= locals.oldData ? oldData.userName : null %>" placeholder="Elegi un nombre de usuario">
+                                <i class="fas fa-exclamation-circle none"></i>
+                            </div>
+                            <p class="error"></p>
+                            <% if (locals.errors && errors.userName) { %>
+                                <p class="error"> 
+                                    <%= errors.userName.msg %> 
+                                </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex_column">
+                            <div class="flex_input">
+                                <input type="text" name="firstName" id="firstName" value="<%= locals.oldData ? oldData.firstName : null %>" placeholder="Nombre">
+                                <i class="fas fa-exclamation-circle none"></i>
+                            </div>
+                            <p class="error"></p>   
+                            <% if (locals.errors && errors.firstName) { %>
+                                    <p class="error"> 
+                                        <%= errors.firstName.msg %> 
+                                    </p>
+                                <% } %>
+                        </div>
+                        <div class="flex_column">
+                            <div class="flex_input">
+                                <input type="text" name="lastName" id="lastName" value="<%= locals.oldData ? oldData.lastName : null %>" placeholder="Apellido">
+                                <i class="fas fa-exclamation-circle none"></i>
+                            </div>
+                            <p class="error"></p>
+                            <% if (locals.errors && errors.lastName) { %>
+                                <p class="error"> 
+                                    <%= errors.lastName.msg %> 
+                                </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex_column">
+                            <div class="flex_input">
+                                <input type="password" name="password" id="password" placeholder="Escribi tu contaseña">
+                                <i class="fas fa-exclamation-circle none"></i>
+                            </div>
+                            <p class="error"></p>
+                            <% if (locals.errors && errors.password) { %>
+                                <p class="error"> 
+                                    <%= errors.password.msg %> 
+                                </p>
+                            <% } %>
+                        </div>
+                        <div class="flex_column">
+                            <input type="file" name="image" id="image" class="success">
+                            <p class="error"></p>
+                        </div>
+                    </div>
+                    
+                    <button class="button_login" type="submit"> Registrate</button>
+                    <p class="login_href">Ya tenes cuenta, <a href="/user/login">INGRESA</a></p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="/js/register.js"></script>
+</body>
+</html>

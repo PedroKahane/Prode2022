@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../includes/head") %>
+<body>
+    <%- include ("../includes/header") %>
+    <main>
+        <section id="section_login">
+            <div class="login">
+                <img src="/images/Qatar2022.png" alt="" width="300px">
+                <p class="title_login">Ingresar:</p>
+                <div class="a_login_register">
+                    <a class="menu_user border active" href="/user/login"> LOG-IN</a>
+                    <a class="menu_user inactive" href="/user/register"> REGISTRATE</a>
+                </div>
+                <form action="/user/access" method="post" class="form_login" id="form_login">     
+                 <fieldset>
+                  <div class="flex">
+                      <input type="text" name="userName" id="userName" placeholder="Escribi tu nombre de usuario">
+                      <i class="fas fa-exclamation-circle none"></i>
+                  </div>
+                  <p class="error"></p>
+                    <% if (locals.errors && errors.userName) { %>
+                        <p class="error_login">
+                          <%= errors.userName.msg %> 
+                        </p>
+                    <% } %>
+                </fieldset>
+                <fieldset>
+                  <div class="flex"> 
+                    <input type="password" name="password" id="password" placeholder="Escribi tu contaseña">
+                    <i class="fas fa-exclamation-circle none"></i>
+                  </div>
+                  <p class="error"></p>
+                    <% if (locals.errors && errors.password) { %>
+                        <p class="error_login">
+                          <%= errors.password.msg %> 
+                        </p>
+                      <% } %>
+                </fieldset> 
+                      <label for="rememeber_user" class="label_recordar">
+                        <input type="checkbox" name="rememeber_user" class="check_remember">
+                        <p> Recordar mi usuario</p> 
+                      </label>
+                    <button class="button_login" type="submit"> Ingresar</button>
+                    <p class="login_href">No tenes cuenta, <a href="/user/register">REGISTRATE</a></p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="/js/login.js"></script>
+</body>
+</html>
