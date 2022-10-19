@@ -10,7 +10,7 @@ const {like} = Op
 module.exports = {
     login: (req,res) => 
     {
-        res.render("../src/views/users/login")
+        res.render("../src/views/users/login", {styles:"login.css"})
         
 
     },

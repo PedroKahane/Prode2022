@@ -1,0 +1,260 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'montserrat',sans-serif;
+}
+.flex{
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#section_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/images/fondo_login.jpg);
+    background-size: cover;
+}
+.login {
+    background-color:#eeeee4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    margin: 145px 0px;
+    border-radius:70px;
+}
+.register{
+    background-color:#eeeee4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+    margin: 145px 0px;
+    border-radius:70px;
+}
+.title_login {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 10px 30px 30px;
+}
+.a_login_register{
+    display: flex;
+    align-items: center;
+}
+.menu_user{
+    background-color: #eeeee4;
+    padding: 10px 20px;
+    width: 190px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #0A0903;
+    text-align: center;
+    text-decoration: none;
+    transition: all 1050ms;
+}
+.border {
+    border-right: 1px solid #eeeee4;
+}
+.active {
+    border-bottom: 2px solid #8a1538;
+}
+.form_login, .form_register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+}
+
+.form_login input{
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding: 11px 20px;
+    border: none;
+    margin: 20px 0px;
+    width: 100%;
+}
+.form_register input {
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding: 11px 20px;
+    border: none;
+    margin: 20px;
+    width: 85%;
+}
+.button_login {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 70%;
+    border: none;
+    background-color: #8a1538;
+    color: #eeeee4;
+    font-size: 32px;
+    box-shadow: 0 27px 15px -17px rgb(0 0 0 / 30%), 0 2px 4px rgb(0 0 0 / 30%);
+    font-weight: 700;
+    padding: 5px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 750ms;
+}
+.inactive{
+    border-bottom: 2px solid #eeeee4;
+}
+.inactive:hover {
+    border-bottom: 2px solid #8a1538;
+}
+.menu_user:hover {
+    background-color: #8a1538 ;
+    color: #FFFAFA;
+}
+.button_login:hover{
+    background-color: #eeeee4 ;
+}
+.login img {
+    margin-top:  40px;
+    margin-bottom: 40px;
+}
+.register img {
+    margin-top:  40px;
+    margin-bottom: 40px;
+}
+.login_href {
+    font-size: 16px
+}
+.label_recordar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+.check_remember{
+    display: flex;
+    width: 15px !important;
+    height: 15px;
+    margin: 0px 5px 0px 0px !important;
+    border-radius: 100% !important;
+}
+.label_recordar p {
+    font-size: 16px;
+}
+.error {
+    text-align: left;
+    color: rgb(255, 0, 0);
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: -10px;
+    margin-left: 30px;
+}
+.flex_column{
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.flex_input{
+    
+    text-align: center;
+    display: flex;
+}
+
+
+.error_login {
+    color: rgb(255, 0, 0);
+    font-size: 13px;
+    align-self: self-start;
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.fa-exclamation-circle{
+    z-index: 9;
+    position: relative;
+    right: 40px;
+    font-size: 24px;
+    color: rgb(255, 0, 0);
+    width: 0px;
+}
+.fa-exclamation-circle-register{
+    z-index: 9;
+    position: relative;
+    right: 60px;
+    font-size: 24px;
+    color: rgb(255, 0, 0);
+    width: 0px;
+    margin-top: 27px;
+}
+
+.fa-check-circle{
+    z-index: 9;
+    position: relative;
+    right: 40px;
+    font-size: 24px;
+    color: rgb(44, 236, 44);
+    width: 0px;
+}
+.fa-check-circle-register{
+    z-index: 9;
+    position: relative;
+    right: 60px;
+    font-size: 24px;
+    color: rgb(44, 236, 44);
+    width: 0px;
+    margin-top: 27px;
+}
+
+
+.error_front{
+    border: 1px solid rgb(255, 0, 0);
+}
+.none{
+    display: none !important;
+}
+
+fieldset{
+    display: flex;
+    align-items: flex-start;
+    margin: 5px;
+    width: 100%;
+    flex-direction: column;
+    border: none;
+}
+
+@media (max-width:450px) {
+    .login {
+        width: 100%;
+    }
+    .a_login_register {
+        width: 90%;
+    }
+    .menu_user {
+        width: 50%;
+        font-size: 12px;
+        padding: 10px 0px;
+    }
+    .title_login {
+        font-size: 24px;
+    }
+    .form_login input{
+        width: 100%;
+    }
+    .button_login {
+        font-size: 20px;
+        width: 95%;
+    }
+    .form_login{
+        padding: 10px;
+    }
+}

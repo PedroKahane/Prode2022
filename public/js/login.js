@@ -22,28 +22,22 @@ inputs.forEach(input => {
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
-                icon.classList.add("fa-exclamation-circle-register")
-                error.innerHTML = "El nombre de usuario debe contener mínimo 5 caracteres"
-                icon.classList.remove("fa-check-circle-register")
                 icon.classList.add("fa-exclamation-circle")
+                error.innerHTML = "Debe contener al menos 8 caracteres"
                 icon.classList.remove("fa-check-circle")
             }
             else if(value.length > 30 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
-                icon.classList.add("fa-exclamation-circle-register")
-                icon.classList.remove("fa-check-circle-register")
-                error.innerHTML = "El nombre de usuario no puede contener más de 30 caracteres"
                 icon.classList.add("fa-exclamation-circle")
+                error.innerHTML = "Debe contener al menos 8 caracteres"
                 icon.classList.remove("fa-check-circle")
             } else{
                 target.classList.add("success")
                 target.classList.remove("error_front")
                 icon.classList.remove("none")
-                icon.classList.remove("fa-exclamation-circle-register")
                 icon.classList.remove("fa-exclamation-circle")
-                icon.classList.add("fa-check-circle-register")
                 icon.classList.add("fa-check-circle")
                 error.innerHTML = null
             }
