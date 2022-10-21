@@ -13,20 +13,30 @@
         <div class="menu_over">
             <div class="menu_desplegable">
                 <div class="title">
-                    
-                    <a class="" href="/user/login">Login</a>
-                    <a class="" href = "/user/register">Register</a>
-                    <a class="" href = "/admin/partidos">Partidos</a>
-                    <% if (locals.isLogged) { %>
-                        <form action="/user/logout" method="GET" class="formulario_logout">
-                            <button type="submit" class="Buton-logout">
-                                DESLOGUEATE DE TU CUENTA
-                            </button>
-                        </form>
-                    <% } %>
+                    <a class="" href ="/prode/miprode">Mi prode</a>
+                    <a class="" href ="/prode/tabla">tabla de posiciones</a>
                 </div>
             </div>
         </div>
+        <section id="icon_header">
+            <% if (locals.isLogged) { %>
+                <div id="a_img_log">
+                    <img src="/uploads/users/<%= locals.userLogged.image %> " alt="" height="60px" width="60px" id="image_perfil">
+                    <p class="bienvenida_logged"> Bienvenido <%= locals.userLogged.user_name %> </p>
+                </div>
+                <div class="dropdown hidden none">
+                    <a href="/user/profile">Profile</a>
+                    <% if (locals.isLogged) { %>
+                        <a href="/user/logout">Logout</a>
+                    <% } %> 
+                    <% if (locals.userLogged && locals.userLogged.admin) { %>
+                        <a href="/admin/partidos">Administrar</a>
+                    <% } %> 
+                </div>
+            <% } else if(!locals.isLogged) { %>
+                <a class="icon_a" href="/user/login">LOGIN</a>
+            <% } %>
+        </section>
         
     </div>
-</header>
+</header><script src="/js/dropdown.js"></script>

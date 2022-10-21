@@ -74,6 +74,74 @@ header img {
     text-align: center;
     color: #eeeee4;
 }
+#icon_header a i {
+    font-size: 1.7em;
+    color: #FFFAFA;
+    padding: 10px;
+}
+#icon_header {
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#a_img_log{
+    height: 32px;
+    margin-top: 3px;
+    display: flex;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    cursor: pointer;
+}
+.dropdown{
+    
+    position: absolute;
+    top: 75px;
+    display: flex;
+    background: rgba(30,30,30, 0.9);
+    flex-direction: column;
+    right: 10px;
+    width: 100%;
+    max-width: 180px;
+    box-shadow: 0 27px 15px -17px rgb(0 0 0 / 30%), 0 2px 4px rgb(0 0 0 / 30%);
+}
+.dropdown a {
+    text-decoration: none;
+    color: #FFFAFA;
+    font-weight: 500;
+    padding: 10px 30px;
+    width: 100%;
+    text-align: center;
+}
+.dropdown a:hover {
+    background: rgba(20,20,20, 0.9);
+}
+.dropdown a:last-child{
+    border: none;
+}
+.dropdown.show{
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: all 1s ease !important;
+}
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+    transition: all 1s ease !important;
+}
+.none {
+    display: none !important;
+}
+#image_perfil{
+    border-radius: 100%;
+    margin-right: 10px;
+    border: 2px solid #8a1538;
+    padding: 0px;
+}
+.bienvenida_logged{
+    color: #8a1538;
+}
 @media (max-width:1200px) {
     .title{
         margin-left: 40px;
@@ -111,5 +179,8 @@ header img {
     }
     .space {
         margin-right: 15px !important;
+    }
+    .bienvenida_logged{
+        display: none;
     }
 }

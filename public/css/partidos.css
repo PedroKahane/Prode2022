@@ -4,7 +4,7 @@
 main{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 #contenedor_partidos{
     background-color: #eeeee4;
@@ -21,16 +21,21 @@ main{
     width: 100%;
     margin: 5px;
 }
-#contenedor_partidos p{
+.equipos{
     font-size: 12px;
+    text-align: center;
 }
 .flex_column{
     display: flex;
     flex-direction: column;
+    margin: 0px 5px;
 }
 .ronda{
     font-size: 16px;
     margin: 0px 10px;
+}
+.ronda_partido{
+    font-size: 14px;
 }
 .boton{
     margin-left: 10px;
@@ -47,4 +52,22 @@ main{
     border: 1px solid #8a1538;
     cursor: pointer;
     transition: 700ms;
+}
+.form_grupo{
+    padding: 15px;
+}
+#contenedor_rondas{
+    background-color: #eeeee4;
+    color: #8a1538;
+    max-width: 350px;
+    margin:  0px;
+    
+}
+
+.sub_title{
+    color: #8a1538;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0px;
 }

@@ -13,20 +13,14 @@ const luxon = require('luxon');
 const controller = { 
 
     index: async (req,res) => {
-        try {
-            let partidos = await db.Partidos.findAll({include:["equipos1","equipos2","grupos"]})
-            let fecha = luxon.DateTime.local().toFormat("yyyy-MM-dd")
-            let grupos = await db.Grupos.findAll({where: {
-                activo: 1,
-            }})
-            res.render('index',{styles: "home.css", partidos: partidos, grupos: grupos,date: fecha});
-        } catch (error) {
-            res.send(error)
-        }
-        
-        
+      try {
+        res.render("index", {styles:"home.css"})
+      } catch (error) {
+        console.log(error);
+      }
+
+
     }
 }
-
 
 module.exports = controller;

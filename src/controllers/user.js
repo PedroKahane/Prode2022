@@ -20,7 +20,7 @@ module.exports = {
         if (!resultValidation.isEmpty()) {
             if(req.file){
                 let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                if(fs.existsSync(imagenFrente) && req.file.filename != "Default.png") {
+                if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
                     fs.unlinkSync(imagenFrente)
                 }
             }
@@ -46,7 +46,7 @@ module.exports = {
                 if(mailInDB) {
                     if(req.file != undefined){
                         let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.png") {
+                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
@@ -62,7 +62,7 @@ module.exports = {
                 } else if(userInDB){
                     if(req.file != undefined){
                         let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.png") {
+                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
@@ -80,7 +80,7 @@ module.exports = {
                         email : req.body.email,
                         user_name:req.body.userName,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? req.file.filename : "Default.png",
+                        image: req.file != undefined ? req.file.filename : "Default.jpg",
                         admin: String(req.body.email).includes("@prode") ? 1 : 0,
                         puntos: 0
                     })

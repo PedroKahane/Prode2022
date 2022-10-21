@@ -1,0 +1,32 @@
+<html>
+    <head>
+    <%- include('../includes/head') %>
+    </head>
+    
+    <body>
+        <%- include('../includes/header') %>
+        <head>
+            <div class="responsive_table">
+                <p class="titulo">TABLA DE POSICIONES:</p>
+                <div class="tabla" id="tabla">
+                    <table cellspacing="0" cellpadding="0">
+                        <tr class="destacado">
+                            <td translate="no" class="titulo_tabla">Puesto</td translate="no">
+                            <td translate="no" class="titulo_tabla">Nombre</td translate="no">
+                            <td translate="no" class="titulo_tabla">Puntos</td translate="no">
+                            <td translate="no" class="titulo_tabla">Plenos</td translate="no">
+                        </tr>
+                        <% for( let i = 0; i < usuarios.length; i++ ) { %>
+                                <tr class="fondo1">
+                                    <td translate="no"><%= (i + 1)%> º</td>
+                                    <td translate="no"> <%= usuarios[i].user_name%> </td>
+                                    <td translate="no"><%= usuarios[i].puntos%></td>
+                                    <td translate="no"> <%= usuarios[i].plenos %></td>
+                                </tr>
+                        <% } %>
+    
+                        
+                    </table>
+        </head>
+    </body>
+</html>

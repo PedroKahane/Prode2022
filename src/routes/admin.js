@@ -6,6 +6,7 @@ let controller = require('../controllers/admin')
 
 router.get('/partidos' ,controller.partidos);
 router.put("/partidos/update/:id",controller.asociarPartidos)
+router.put("/rondas/update/:id",controller.activarPartidos)
 
 
 

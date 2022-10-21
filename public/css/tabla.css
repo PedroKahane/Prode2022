@@ -1,0 +1,40 @@
+.responsive_table {
+    padding-top: 20px;
+  }
+.tabla {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.destacado{
+    font-family:'Montserrat';
+    font-weight:bold;
+    font-size: 22px;
+    background-color:#8a1538;
+    color: #eeeee4;
+  }
+.fondo1{
+    font-size: 18px;
+    font-family: 'Montserrat';
+    color: #8a1538;
+}
+td {
+    border-right:2px solid white ;
+}
+.destacado td {
+    border-bottom: 2px solid white;
+}
+td:nth-child(4n) {
+    border-right:none ;
+}
+table{
+    background-color: #eeeee4;
+    padding: 5px;
+}
+td{
+    width: 180px;
+    text-align: center;
+}

@@ -9,39 +9,52 @@
     
     <body>
         <%- include('../includes/header') %>
-        <h1 class="titulo"> Partios de eliminación directa</h1>
+        <h1 class="titulo"> Partidos de eliminación directa</h1>
         <main>
-            <div id="contenedor_partidos">
-            <% partidos.forEach(partido => { %>
-                <div class="contenedor_partido">
-                <p class="ronda"> <%= partido.grupos.nombre %> </p>
-                    <% if (partido.equipo1 == null && partido.equipo_2 == null) { %>
-                        <form action="/admin/partidos/update/<%= partido.game_id %> ?_method=PUT" method="POST" class="flex">
-                        <% for(let index = 1; index < 3; index++ ) { %>
-                            <div class="flex_column">
-                                <p>equipo <%= index %> :</p>
-                                <select name="partido" id="<%= partido.game_id %>">
-                                    <% equipos.forEach(equipo => { %>
-                                        <option value="<%= equipo.id %>"><%= equipo.pais %></option>
-                                    <% }) %>
-                                </select>
-                            </div>
-                        <% } %> 
-                        <input class="boton" type="submit" value="Enviar">
-                        </form>
-                    <% } else { %>
-                            <div class="flex_column">
-                                <p>equipo 1: </p>
-                                <p><%= partido.equipos1.pais %> </p>
-                            </div>
-                            <div class="flex_column">
-                                <p>equipo 2: </p>
-                                <p><%= partido.equipos2.pais %> </p>
-                            </div>
-                    <% } %>
+            <% if (grupos.length > 0) { %>
+                <div id="contenedor_rondas">
+                    <p class="sub_title">ACTIVAR RONDA</p>
+                    <% grupos.forEach(grupo => { %>
+                    <form action="/admin/rondas/update/<%= grupo.id %>?_method=PUT" method="POST" class="form_grupo flex">
+                        <p class="ronda"> <%= grupo.nombre %> </p>
+                        <input class="boton" type="submit" value="Activar">
+                    </form>
+                    <% }) %>
                 </div>
-            <% }) %>
-            <div>
+                <div id="contenedor_partidos">
+                <p class="sub_title">INSERTAR EQUIPOS</p>
+                <% partidos.forEach(partido => { %>
+                    <div class="contenedor_partido">
+                    <p class="ronda_partido"> <%= partido.grupos.nombre %> </p>
+                        <% if (partido.equipo1 == null && partido.equipo_2 == null) { %>
+                            <form action="/admin/partidos/update/<%= partido.game_id %> ?_method=PUT" method="POST" class="flex">
+                            <% for(let index = 1; index < 3; index++ ) { %>
+                                <div class="flex_column">
+                                    <p class="equipos">Equipo <%= index %> :</p>
+                                    <select required name="partido" id="partido">
+                                        <option value="">Seleccionar pais</option>
+                                        <% equipos.forEach(equipo => { %>
+                                            <option value="<%= equipo.id %>"><%= equipo.pais %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            <% } %> 
+                            <input class="boton" type="submit" value="Enviar">
+                            </form>
+                        <% } else { %>
+                                <div class="flex_column">
+                                    <p>equipo 1: </p>
+                                    <p><%= partido.equipos1.pais %> </p>
+                                </div>
+                                <div class="flex_column">
+                                    <p>equipo 2: </p>
+                                    <p><%= partido.equipos2.pais %> </p>
+                                </div>
+                        <% } %>
+                    </div>
+                <% }) %>
+                <div>
+            <% } %>
         </main>
     </body>
 </html>

@@ -12,9 +12,12 @@ module.exports = {
         try{
             let partidos = await db.Partidos.findAll({include:["grupos","equipos1","equipos2"]})
             let  equipos =  await db.Equipos.findAll()
+            let grupos = await db.Grupos.findAll({where: {
+                activo:0
+            }})
             let partidosFiltrados = partidos.filter(partido=> partido.grupos.activo === 0)
             //res.send(partidosFiltrados)
-            return res.render('admin/partidos', {styles: "partidos.css",partidos:partidosFiltrados, equipos:equipos});
+            return res.render('admin/partidos', {styles: "partidos.css",partidos:partidosFiltrados, equipos:equipos, grupos});
 
         } catch(error){
             console.log(error)
@@ -28,6 +31,20 @@ module.exports = {
             }, {
                 where: {
                     game_id:req.params.id,
+                }
+            })
+            return res.redirect('/admin/partidos');
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    activarPartidos:async (req,res) => {
+        try {
+            db.Grupos.update({
+                activo:1
+            }, {
+                where: {
+                    id: req.params.id,
                 }
             })
             return res.redirect('/admin/partidos');
