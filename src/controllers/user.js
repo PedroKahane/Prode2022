@@ -10,8 +10,7 @@ const {like} = Op
 module.exports = {
     login: (req,res) => 
     {
-        res.render("../src/views/users/login", {styles:"login.css"})
-        
+        res.render("users/login", {styles:"login.css"})
 
     },
     processRegister: async (req, res) => {
@@ -25,7 +24,7 @@ module.exports = {
                     fs.unlinkSync(imagenFrente)
                 }
             }
-            return res.render('../src/views/users/register', {
+            return res.render('users/register', {
                 styles:"login.css", 
                 errors: resultValidation.mapped(),
                 oldData: req.body
@@ -51,7 +50,7 @@ module.exports = {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
-                    return res.render('../src/views/users/register', {
+                    return res.render('users/register', {
                       errors: {
                           email: {
                               msg: 'Este mail ya está registrado'
@@ -67,7 +66,7 @@ module.exports = {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
-                    return res.render('../src/views/users/register', {
+                    return res.render('users/register', {
                       errors: {
                         user_name: {
                               msg: 'Este nombre de usuario ya existe, pruebe con otro'
@@ -109,7 +108,7 @@ module.exports = {
     
 
     },
-    register:(req,res) => res.render("../src/views/users/register",{styles:"login.css"}),
+    register:(req,res) => res.render("users/register",{styles:"login.css"}),
     access: async (req,res) => {
         let userToLogin = await db.User.findOne({
             where: {

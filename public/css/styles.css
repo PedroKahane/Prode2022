@@ -52,6 +52,10 @@ header img {
     color: #8a1538;
     text-decoration: none;
     margin: 5px 15px;
+    padding: 5px;
+}
+.title a:hover{
+    border-bottom: 2px solid #8a1538;
 }
 .menu_mobile_bt{ display: none; width: 23px; height: auto; padding: 10px 0px 10px 0px; }
 .menu_mobile_bt .mbt_line{
@@ -64,6 +68,11 @@ header img {
 }
 .space {
     margin-right: 22vw !important;
+}
+.titulo{
+    font-size: 48px;
+    text-align: center;
+    color: #eeeee4;
 }
 @media (max-width:1200px) {
     .title{

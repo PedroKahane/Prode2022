@@ -1,0 +1,50 @@
+.flex{
+    display: flex;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#contenedor_partidos{
+    background-color: #eeeee4;
+    color: #8a1538;
+    max-width: 450px;
+    margin: 45px 0px;
+    padding: 15px;
+    width: 100%;
+}
+.contenedor_partido{
+    display: flex;
+    align-items: center;
+    height: 45px;
+    width: 100%;
+    margin: 5px;
+}
+#contenedor_partidos p{
+    font-size: 12px;
+}
+.flex_column{
+    display: flex;
+    flex-direction: column;
+}
+.ronda{
+    font-size: 16px;
+    margin: 0px 10px;
+}
+.boton{
+    margin-left: 10px;
+    align-self: center;
+    background-color: #8a1538;
+    color: #eeeee4;
+    border: 0px;
+    padding: 5px;
+    border-radius: 15px;
+}
+.boton:hover {
+    background-color: #eeeee4;
+    color: #8a1538;
+    border: 1px solid #8a1538;
+    cursor: pointer;
+    transition: 700ms;
+}

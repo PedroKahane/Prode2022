@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const method = require('method-override');
 const session = require('express-session');
 const isLogged = require("./middlewares/userLogged")
 const cookies = require('cookie-parser')
@@ -29,15 +30,28 @@ app.use(methodOverrider("_method"));
 
 //motor de EJS
 app.set('view engine', 'ejs');
+app.set("views",path.resolve(__dirname, "./views"));
+
+
+
+/* Data Configuration */
+app.use(express.urlencoded({extended:true})); // Not fund req.body
+app.use(method("_method")); // ?_method=PUT o ?_method=DELETE
 
 //rutas
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const prodeRouter = require('./routes/pronosticos');
+const adminRouter = require('./routes/admin');
+
 
  
 
 app.use('/' , indexRouter)
 app.use('/user', userRouter);
+app.use('/prode', prodeRouter);
+app.use('/admin', adminRouter);
+
 
 
 

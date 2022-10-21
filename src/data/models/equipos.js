@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
-            image:{
+            imagen:{
                 type: DataTypes.STRING
             },
     },{
@@ -23,13 +23,13 @@ module.exports = function(sequelize, DataTypes) {
     });
     Equipos.associate = function(models){
         Equipos.hasMany(models.Partidos, {
-            as: "Equipos",
+            as: "equipos1",
             foreignKey: "equipo1",
         })
-        /*Equipos.hasMany(models.Partidos, {
-            as: "Equipos",
+        Equipos.hasMany(models.Partidos, {
+            as: "equipos2",
             foreignKey: "equipo2",
-        })*/
+        })
     }
 
     return Equipos

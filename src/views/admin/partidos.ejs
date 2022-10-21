@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+</body>
+</html>
+    <head>
+    <%- include('../includes/head') %>
+    </head>
+    
+    <body>
+        <%- include('../includes/header') %>
+        <h1 class="titulo"> Partios de eliminación directa</h1>
+        <main>
+            <div id="contenedor_partidos">
+            <% partidos.forEach(partido => { %>
+                <div class="contenedor_partido">
+                <p class="ronda"> <%= partido.grupos.nombre %> </p>
+                    <% if (partido.equipo1 == null && partido.equipo_2 == null) { %>
+                        <form action="/admin/partidos/update/<%= partido.game_id %> ?_method=PUT" method="POST" class="flex">
+                        <% for(let index = 1; index < 3; index++ ) { %>
+                            <div class="flex_column">
+                                <p>equipo <%= index %> :</p>
+                                <select name="partido" id="<%= partido.game_id %>">
+                                    <% equipos.forEach(equipo => { %>
+                                        <option value="<%= equipo.id %>"><%= equipo.pais %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        <% } %> 
+                        <input class="boton" type="submit" value="Enviar">
+                        </form>
+                    <% } else { %>
+                            <div class="flex_column">
+                                <p>equipo 1: </p>
+                                <p><%= partido.equipos1.pais %> </p>
+                            </div>
+                            <div class="flex_column">
+                                <p>equipo 2: </p>
+                                <p><%= partido.equipos2.pais %> </p>
+                            </div>
+                    <% } %>
+                </div>
+            <% }) %>
+            <div>
+        </main>
+    </body>
+</html>
