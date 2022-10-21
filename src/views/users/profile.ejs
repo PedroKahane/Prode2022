@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../includes/head") %>
+<body>
+    <%- include ("../includes/header") %>
+    <main>
+        <p class="titulo_principal">INFORMACION DE TU PERFIL:</p>
+        <section class="content">
+            <section class="lado_derecho">
+                <article class="imagen">
+                    <p class="title_img">Imagen de Perfil:</p>
+                    <figure id="figure_profile">
+                        <img src="/uploads/users/<%= user.image%>" alt="" id="imagen_profile">
+                    </figure>
+                    <form id="delete_form" action="/user/avatarDefault?_method=PUT" method="POST">
+                        <input type="hidden" name="id" value="<%= user.id %>">
+                        <button id="delete_foto" type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                    <form id="imagen_form" action="/user/avatar?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <fieldset id="fieldset_image">
+                            <label for="">Cambiar imagen:</label>
+                            <input type="file" name="image" id="image" class="border width">
+                            <p id="error_image"></p>
+                            <input type="hidden">
+                            <% if (locals.errors && errors.image) { %>
+                                <p class="error"> 
+                                    <%= errors.image.msg %>
+                                </p>
+                            <% } %>
+                        </fieldset>
+                        <button id="send_foto" type="submit">Save</button>
+                    </form>
+                </article>
+            </section>
+            <form  action="/user/update?_method=PUT" method="POST" id="update">
+                <p class="title_img">Editar información de Perfil:</p>
+                <section class="formularios">
+                    <fieldset>
+                        <label for="firstName" class="titulo_profile">Nombre de usuario:</label>
+                    <div class="flex">
+                        <input type="text" name="firstName" id="firstName" value="<%= locals.oldData ? oldData.firstName : user.first_name %>" class="border width">
+                        <i class="fas fa-exclamation-circle none"></i>
+                    </div>
+                    <p class="error"></p>
+                        <% if (locals.errors && errors.firstName) { %>
+                            <p class="error"> 
+                                <%= errors.firstName.msg %> 
+                            </p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset>
+                        <label for="email" class="titulo_profile">Correo:</label>
+                        <div class="flex">
+                            <input type="text" name="email" id="email" value="<%= locals.oldData ? oldData.email : user.email %>" class="border width">
+                            <i class="fas fa-exclamation-circle none"></i>
+                        </div>
+                        <p class="error"></p>
+                        <% if (locals.errors && errors.email) { %>
+                            <p class="error"> 
+                                <%= errors.email.msg %> 
+                            </p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset  class="submit_fieldset">
+                        <button type="submit" class="submit">Send</button>
+                    </fieldset>
+                </section>
+            </form>
+            <form  action="/user/forgotPassword?_method=PUT" method="POST" id="Forgotpassword">
+                <p class="title_img">Editar tu contraseña:</p>
+                <section class="formularios">
+                    <fieldset>
+                        <label for="password" class="titulo_profile">Cambiar contraseña:</label>
+                        <div class="flex">
+                            <input type="password" name="password" id="password" value="" class="border width">
+                            <i class="fas fa-exclamation-circle none"></i>
+                        </div>
+                        <p class="error"></p>
+                        <% if (locals.errors && errors.password) { %>
+                            <p class="error"> 
+                                <%= errors.password.msg %> 
+                            </p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset>
+                        <label for="repeatPasword" class="titulo_profile">Cambiar contraseña:</label>
+                        <div class="flex">
+                            <input type="password" name="repeatPasword" id="repeatPasword" value="" class="border width">
+                            <i class="fas fa-exclamation-circle none"></i>
+                        </div>
+                        <p class="error"></p>
+                        <% if (locals.errors && errors.repeatPasword) { %>
+                            <p class="error"> 
+                                <%= errors.repeatPasword.msg %> 
+                            </p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset  class="submit_fieldset">
+                        <button type="submit" class="submit">Cambiar</button>
+                    </fieldset>
+                </section>
+            </form>
+        </section>
+        <form action="/user/logout" method="GET" class="formulario_logout">
+            <button type="submit" class="Buton-logout">
+                DESLOGUEATE DE TU CUENTA
+            </button>
+        </form>
+    </main>
+</body>
+</html>

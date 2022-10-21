@@ -20,7 +20,7 @@ module.exports = {
         if (!resultValidation.isEmpty()) {
             if(req.file){
                 let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
+                if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
                     fs.unlinkSync(imagenFrente)
                 }
             }
@@ -46,7 +46,7 @@ module.exports = {
                 if(mailInDB) {
                     if(req.file != undefined){
                         let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
+                        if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
@@ -62,7 +62,7 @@ module.exports = {
                 } else if(userInDB){
                     if(req.file != undefined){
                         let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "Default.jpg") {
+                        if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
                             fs.unlinkSync(imagenFrente)
                         }
                     }
@@ -80,7 +80,7 @@ module.exports = {
                         email : req.body.email,
                         user_name:req.body.userName,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? req.file.filename : "Default.jpg",
+                        image: req.file != undefined ? req.file.filename : "default.jpg",
                         admin: String(req.body.email).includes("@prode") ? 1 : 0,
                         puntos: 0
                     })
@@ -141,6 +141,119 @@ module.exports = {
                 }, styles:"login.css"
         })
     },
+    update: (req,res) => {
+        const resultValidation = validationResult(req);
+
+        if (!resultValidation.isEmpty()) {
+           return res.render('users/profile', {
+               styles:"profile.css", 
+               user: req.session.userLogged, 
+               errors: resultValidation.mapped(),
+               oldData: req.body
+           });
+       } 
+       //return res.send(req.body)
+       try{
+           db.User.update( {
+               email : req.body.email,
+               user_name: req.body.firstName,
+           }, {
+               where: {
+                   user_id: req.session.userLogged.user_id
+               }
+           })
+           return res.redirect('/');
+
+       } catch(error){
+           return res.send(error)
+       }
+   },
+   forgotPassword: (req,res) => {
+       const resultValidation = validationResult(req);
+
+       if (!resultValidation.isEmpty()) {
+          return res.render('users/profile', {
+              styles:"profile.css", 
+              user: req.session.userLogged, 
+              errors: resultValidation.mapped(),
+          });
+      } 
+      if(req.body.password != req.body.repeatPasword){
+       return res.render('users/profile', {
+           styles:"profile.css", 
+           user: req.session.userLogged, 
+           errors: {
+               repeatPasword: {
+                   msg: 'Las contraseñas no coinciden'}
+           },
+       });
+   }
+   try{
+       db.User.update( {
+           password: bcrypt.hashSync(req.body.password, 10),
+       }, {
+           where: {
+               user_id: req.session.userLogged.user_id
+           }
+       })
+       return res.redirect('/');
+
+   } catch(error){
+       return res.send(error)
+   }
+  },
+   avatar: (req,res) => {
+       const resultValidation = validationResult(req);
+
+       if (!resultValidation.isEmpty()) {
+           return res.render('users/profile', {
+               styles:"profile.css", 
+               user: req.session.userLogged, 
+               errors: resultValidation.mapped(),
+               oldData: req.body
+           });
+       } else{
+           let imagenFrente = path.resolve(__dirname,"../../public/uploads/users",req.session.userLogged.image)
+           if(fs.existsSync(imagenFrente) && req.session.userLogged.image != "default.jpg") {
+             fs.unlinkSync(imagenFrente)
+           }
+       }
+       
+       try{  
+           db.User.update( {
+               image: req.file != undefined ? req.file.filename : "default.jpg",
+           }, {
+               where: {
+                   user_id: req.session.userLogged.user_id
+               }
+           })
+           res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})
+   
+       } catch(error){
+           return res.send(error)
+       }
+   },
+   avatarDefault: (req,res) => {
+       try{
+        let imagenFrente = path.resolve(__dirname, "../../public/uploads/users",req.session.userLogged.image)
+        if(fs.existsSync(imagenFrente) && req.session.userLogged.image != "default.jpg") {
+          fs.unlinkSync(imagenFrente)
+        }
+           db.User.update( {
+               image: "default.jpg",
+           }, {
+               where: {
+                   user_id: req.session.userLogged.user_id
+               }
+           })
+           res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})
+       } catch(error){
+           console.log(error);
+       }
+    
+   },    
+    profile: async (req,res) => {
+        res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})},
     logout: (req,res) =>{
         req.session.destroy();
         res.clearCookie('user_name')
