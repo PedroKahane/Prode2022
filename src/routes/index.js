@@ -4,7 +4,7 @@ let controller = require('../controllers/index')
 const authMiddleware = require("../middlewares/authMiddleware")
 
 
-router.get('/' ,controller.index);
+router.get('/' ,authMiddleware, controller.index);
 
 
 

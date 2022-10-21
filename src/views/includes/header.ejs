@@ -14,7 +14,7 @@
             <div class="menu_desplegable">
                 <div class="title">
                     <a class="" href ="/prode/miprode">Mi prode</a>
-                    <a class="" href ="/prode/tabla">tabla de posiciones</a>
+                    <a class="" href ="/prode/tabla">Tabla de posiciones</a>
                 </div>
             </div>
         </div>
@@ -30,12 +30,12 @@
                         <a href="/user/logout">Logout</a>
                     <% } %> 
                     <% if (locals.userLogged && locals.userLogged.admin) { %>
-                        <a href="/admin/partidos">Administrar</a>
+                        <a href="/admin/partidos">Administrar partidos</a>
+                        <a href="/admin/resultados">Administrar resultados</a>
                     <% } %> 
                 </div>
-            <% } else if(!locals.isLogged) { %>
-                <a class="icon_a" href="/user/login">LOGIN</a>
-            <% } %>
+            <% }  %>
+                
         </section>
         
     </div>

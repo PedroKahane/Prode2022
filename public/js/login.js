@@ -18,12 +18,12 @@ inputs.forEach(input => {
         
         if(name == "userName"){
            
-            if(value.length < 5 ){
+            if(value.length < 4 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "Debe contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos 4 caracteres"
                 icon.classList.remove("fa-check-circle")
             }
             else if(value.length > 30 ){
@@ -31,7 +31,7 @@ inputs.forEach(input => {
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "Debe contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos de 30 caracteres"
                 icon.classList.remove("fa-check-circle")
             } else{
                 target.classList.add("success")
@@ -51,7 +51,7 @@ inputs.forEach(input => {
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "Debe contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos 6 caracteres"
                 icon.classList.remove("fa-check-circle")
             } else{
                 target.classList.add("success")

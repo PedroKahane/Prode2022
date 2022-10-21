@@ -49,7 +49,7 @@ inputs.forEach(input => {
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle-register")
-                error.innerHTML = "Debe contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos 6 caracteres"
                 icon.classList.remove("fa-check-circle-register")
                 icon.classList.add("fa-exclamation-circle")
                 icon.classList.remove("fa-check-circle")
@@ -66,12 +66,12 @@ inputs.forEach(input => {
         }
 
         if(name == "firstName"){
-            if(value.length < 5 ){
+            if(value.length < 3 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle-register")
-                error.innerHTML = "El nombre debe contener mínimo 5 caracteres"
+                error.innerHTML = "El nombre debe contener mínimo 3 caracteres"
                 icon.classList.remove("fa-check-circle-register")
                 icon.classList.add("fa-exclamation-circle")
                 icon.classList.remove("fa-check-circle")
@@ -98,12 +98,12 @@ inputs.forEach(input => {
             }
         }
         if(name == "lastName"){
-            if(value.length < 5 ){
+            if(value.length < 3 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle-register")
-                error.innerHTML = "El apellido debe contener mínimo 5 caracteres"
+                error.innerHTML = "El apellido debe contener mínimo 3 caracteres"
                 icon.classList.remove("fa-check-circle-register")
                 icon.classList.add("fa-exclamation-circle")
                 icon.classList.remove("fa-check-circle")
@@ -130,12 +130,12 @@ inputs.forEach(input => {
         }
 
         if(name == "userName"){
-            if(value.length < 5 ){
+            if(value.length < 3 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle-register")
-                error.innerHTML = "El nombre de usuario debe contener mínimo 5 caracteres"
+                error.innerHTML = "El nombre de usuario debe contener mínimo 3 caracteres"
                 icon.classList.remove("fa-check-circle-register")
                 icon.classList.add("fa-exclamation-circle")
                 icon.classList.remove("fa-check-circle")

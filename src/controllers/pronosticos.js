@@ -16,9 +16,12 @@ module.exports = {
             let grupos = await db.Grupos.findAll({where: {
                 activo: 1,
             }})
-            res.render('prode/miProde',{styles: "miProde.css", partidos: partidos, grupos: grupos,date: fecha});
+            let pronosticos = await db.Pronosticos.findAll({where:{
+                user_id: req.session.userLogged.user_id,
+            }})
+            res.render('prode/miProde',{styles: "miProde.css", partidos: partidos, grupos: grupos,date: fecha, pronosticos: pronosticos});
     } catch (error) {
-        res.send(error)
+        console.log(error);
     }
     },
     tabla: async (req,res) => {
@@ -42,10 +45,27 @@ module.exports = {
                     game_id:req.params.id,
                 }
             })
-            return res.redirect('/');
+            return res.redirect('/prode/miprode');
 
         } catch(error){
-            return res.send(error)
+            console.log(error);
+        }
+    },
+    resetPartido:(req,res) => {
+        try{
+            db.Pronosticos.update( {
+                equipo1: null,
+                equipo2: null
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id,
+                    game_id:req.params.id,
+                }
+            })
+            return res.redirect('/prode/miprode');
+
+        } catch(error){
+            console.log(error);
         }
     }
 }

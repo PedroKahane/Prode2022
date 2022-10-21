@@ -1,0 +1,64 @@
+<head>
+    <%- include('../includes/head') %>
+    </head>
+    
+    <body>
+        <%- include('../includes/header') %>
+        <main >
+          <h1 class="titulo">MI PRODE</h1>
+          <div id="home">
+          <% grupos.forEach(grupo => { %>
+          <div class="flex_center">
+            <div class="grupo_1">
+              <p class="titulo_grupo">Grupo <%= grupo.nombre %> </p>
+              <% partidos.forEach(element => { %>
+                <% if (element.grupos.nombre == grupo.nombre) { %>
+                    <% if (element.goles1 == null && element.goles2 == null) { %>
+                        <form class="main_partidos" action="/admin/partido/resultado/<%= element.game_id %>?_method=PUT" method="POST">
+                    <% } else { %>
+                        <form class="main_partidos" action="/admin/partido/resultado/reset/<%= element.game_id %>?_method=PUT" method="POST">
+                    <% } %> 
+                    <p class="fecha"><%= element.fecha %> </p>
+                    <div class="equipo_1">
+                      <div class="img_p left">
+                        <img src="<% element.equipos1.imagen %>" alt="<% element.equipos1.pais %>">
+                        <p><%= element.equipos1.pais %>
+                      </div>
+                      <% if (element.goles1 == null) { %>
+                        <input required min="0" type="number" name="local" id="local">
+                      <% }  else {%>
+                        <p><%= element.goles1 %> </p>
+                        <% }%>
+                    </div>
+                    <p>-</p>
+                    <div class="equipo_2">
+                        <% if (element.goles2 == null) { %>
+                            <input required min="0" type="number" name="visitante" id="visitante">
+                          <% }  else {%>
+                            <p><%= element.goles2 %> </p>
+                            <% }%>
+                      <div class="img_p right">
+                        <p><%= element.equipos2.pais %>
+                        <img src="<% element.equipos2.imagen %>" alt="<% element.equipos2.pais %>">
+                      </div>
+                        
+                    </div>
+                    <% if (date < element.fecha && element.goles1 == null && element.goles2 == null) { %>
+                      <button type="submit" id="submit_create" class="boton">Guardar</button>
+                    <% } %>
+                  <% if (element.goles1 !=null && element.goles2 != null) { %>
+                        <button type="submit" id="submit_create" class="boton">Editar</button>
+                  <% } %>
+                </form>
+                <% } %>
+              
+              <% }) %>
+              
+              
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        </main>
+</body>
+</html>
