@@ -162,7 +162,7 @@ module.exports = {
                    user_id: req.session.userLogged.user_id
                }
            })
-           return res.redirect('/');
+           return res.redirect('/user/profile');
 
        } catch(error){
            return res.send(error)
@@ -196,13 +196,13 @@ module.exports = {
                user_id: req.session.userLogged.user_id
            }
        })
-       return res.redirect('/');
+       return res.redirect('/user/profile');
 
    } catch(error){
        return res.send(error)
    }
   },
-   avatar: (req,res) => {
+   avatar: async (req,res) => {
        const resultValidation = validationResult(req);
 
        if (!resultValidation.isEmpty()) {
@@ -213,8 +213,14 @@ module.exports = {
                oldData: req.body
            });
        } else{
-           let imagenFrente = path.resolve(__dirname,"../../public/uploads/users",req.session.userLogged.image)
-           if(fs.existsSync(imagenFrente) && req.session.userLogged.image != "default.jpg") {
+            let user = await db.User.findOne(
+                {
+                    where: { 
+                        user_id: req.session.userLogged.user_id
+                    }
+                })
+           let imagenFrente = path.resolve(__dirname,"../../public/uploads/users",user.image)
+           if(fs.existsSync(imagenFrente) && user.image != "default.jpg") {
              fs.unlinkSync(imagenFrente)
            }
        }
@@ -227,17 +233,23 @@ module.exports = {
                    user_id: req.session.userLogged.user_id
                }
            })
-           res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})
+           return res.redirect('/user/profile');
    
        } catch(error){
            return res.send(error)
        }
    },
-   avatarDefault: (req,res) => {
+   avatarDefault: async (req,res) => {
        try{
-        let imagenFrente = path.resolve(__dirname, "../../public/uploads/users",req.session.userLogged.image)
-        if(fs.existsSync(imagenFrente) && req.session.userLogged.image != "default.jpg") {
-          fs.unlinkSync(imagenFrente)
+        let user = await db.User.findOne(
+            {
+                where: { 
+                    user_id: req.session.userLogged.user_id
+                }
+            })
+        let imagenFrente = path.resolve(__dirname, "../../public/uploads/users",user.image)
+        if(fs.existsSync(imagenFrente) && user.image != "default.jpg") {
+            fs.unlinkSync(imagenFrente)
         }
            db.User.update( {
                image: "default.jpg",
@@ -246,14 +258,21 @@ module.exports = {
                    user_id: req.session.userLogged.user_id
                }
            })
-           res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})
+        return res.redirect('/user/profile');
+           
        } catch(error){
            console.log(error);
        }
     
    },    
     profile: async (req,res) => {
-        res.render("users/profile",{styles:"profile.css",user: req.session.userLogged})},
+        let user = await db.User.findOne(
+            {
+                where: { 
+                    user_id: req.session.userLogged.user_id
+                }
+            })
+        res.render("users/profile",{styles:"profile.css",user: user })},
     logout: (req,res) =>{
         req.session.destroy();
         res.clearCookie('user_name')

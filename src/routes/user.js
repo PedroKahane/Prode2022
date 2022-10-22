@@ -6,6 +6,7 @@ const router = express.Router();
 const controller = require("../controllers/user");
 const validLoggin = require("../middlewares/validLoggin");
 const authMiddleware = require("../middlewares/authMiddleware");
+const userLogged = require("../middlewares/userLogged")
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -73,7 +74,7 @@ const storage = multer.diskStorage({
 
   router.get("/login" ,validLoggin, controller.login);
   router.get("/register" ,validLoggin,controller.register);
-  router.get("/profile" ,authMiddleware,controller.profile);
+  router.get("/profile" ,[authMiddleware, userLogged],controller.profile);
   router.put("/update",[authMiddleware,validacionesProfile], controller.update);
   router.put("/avatar", [upload.single("image")],validacionesAvatar, controller.avatar);
   router.put("/forgotPassword", [authMiddleware, validationsPassword], controller.forgotPassword)

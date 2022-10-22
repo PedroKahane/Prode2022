@@ -47,31 +47,6 @@ inputs.forEach(input => {
                 error.innerHTML = null
             }
         }
-        if(name == "lastName"){
-            if(value.length < 5 ){
-                target.classList.add("error_front")
-                target.classList.remove("success")
-                icon.classList.remove("none")
-                icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "El apellido debe contener minimo 5 caracteres"
-                icon.classList.remove("fa-check-circle")
-            }
-            else if(value.length > 30 ){
-                target.classList.add("error_front")
-                target.classList.remove("success")
-                icon.classList.remove("none")
-                icon.classList.add("fa-exclamation-circle")
-                icon.classList.remove("fa-check-circle")
-                error.innerHTML = "El apellido no puede contener mas de 30 caracteres"
-            } else{
-                target.classList.add("success")
-                target.classList.remove("error_front")
-                icon.classList.remove("none")
-                icon.classList.remove("fa-exclamation-circle")
-                icon.classList.add("fa-check-circle")
-                error.innerHTML = null
-            }
-        }
         if(name == "email"){
             const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if(!re.test(String(value).toLowerCase()) ){
