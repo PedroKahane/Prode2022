@@ -27,7 +27,8 @@ module.exports = {
     tabla: async (req,res) => {
         try {
             let usuarios = await db.User.findAll({order: [
-                ['puntos', 'DESC']
+                ['puntos', 'DESC'],
+                ['plenos', 'DESC']
             ]})
             res.render("prode/tabla",{styles:"tabla.css", usuarios:usuarios})
         } catch (error) {

@@ -23,11 +23,11 @@ const storage = multer.diskStorage({
     body('firstName').notEmpty().withMessage('Tenés que ingresar un nombre'),
     body('lastName').notEmpty().withMessage('Tenés que ingresar un apellido'),
     body('userName').notEmpty().withMessage('Tenés que ingresar un nombre de usuario').bail()
-                    .isLength({min:6, max:12}).withMessage('Debe contener entre 6 y 12 caracteres'),
+                    .isLength({min:3, max:30}).withMessage('Debe contener entre 3 y 30 caracteres'),
     body('email').notEmpty().withMessage('Tenés que ingresar un correo electrónico').bail()
                   .isEmail().withMessage('Debes ingresar un formato de correo válido'),
     body('password').notEmpty().withMessage('Tenés que ingresar una contraseña').bail()
-                    .isLength({min:6, max:12}).withMessage('Debe contener entre 6 y 12 caracteres'),
+                    .isLength({min:6, max:20}).withMessage('Debe contener entre 6 y 20 caracteres'),
     body('image').custom((value, { req }) => {
       let file = req.file;
       let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
@@ -67,7 +67,7 @@ const storage = multer.diskStorage({
 
   const validationsPassword = [
     body('password').notEmpty().withMessage('Tenés que ingresar una contraseña').bail()
-    .isLength({min:6, max:12}).withMessage('Debe contener entre 6 y 12 caracteres')
+    .isLength({min:6, max:20}).withMessage('Debe contener entre 6 y 20 caracteres')
 
 
   ];

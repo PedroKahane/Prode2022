@@ -14,7 +14,14 @@ const controller = {
 
     index: async (req,res) => {
       try {
-        res.render("index", {styles:"home.css"})
+        let usuarios = await db.User.findAll({order: [
+          ['puntos', 'DESC'],
+          ['plenos', 'DESC']
+      ]})
+      let partidos = await db.Partidos.findAll({include:["equipos1","equipos2","grupos"]})
+      let fecha = luxon.DateTime.local().toFormat("yyyy-MM-dd")
+        res.send(usuarios)
+        //res.render("index", {styles:"home.css"})
       } catch (error) {
         console.log(error);
       }
