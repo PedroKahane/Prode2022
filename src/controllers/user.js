@@ -141,7 +141,7 @@ module.exports = {
                 }, styles:"login.css"
         })
     },
-    update: (req,res) => {
+    update: async (req,res) => {
         const resultValidation = validationResult(req);
 
         if (!resultValidation.isEmpty()) {
@@ -168,7 +168,7 @@ module.exports = {
            return res.send(error)
        }
    },
-   forgotPassword: (req,res) => {
+   forgotPassword: async (req,res) => {
        const resultValidation = validationResult(req);
 
        if (!resultValidation.isEmpty()) {
@@ -236,7 +236,7 @@ module.exports = {
            return res.redirect('/user/profile');
    
        } catch(error){
-           return res.send(error)
+           console.log(error)
        }
    },
    avatarDefault: async (req,res) => {

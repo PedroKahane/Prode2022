@@ -81,13 +81,12 @@ passwordInputs.forEach(input => {
         error.innerHTML = null
 
         if(name == "password"){
-            const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-            if(!regex.test(value)){
+            if(value.length < 6){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "La contraseña debe tener 1 mayuscula, 1 minuscula, 1 numero, un caracter especial y contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos 6 caracteres"
                 icon.classList.remove("fa-check-circle")
             } else{
                 target.classList.add("success")
@@ -100,13 +99,12 @@ passwordInputs.forEach(input => {
         }
         if(name == "repeatPasword"){
             const password = document.querySelector("#password")
-            const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-            if(!regex.test(value)){
+            if(value.length < 6){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
                 icon.classList.add("fa-exclamation-circle")
-                error.innerHTML = "La contraseña debe tener 1 mayuscula, 1 minuscula, 1 numero, un caracter especial y contener al menos 8 caracteres"
+                error.innerHTML = "Debe contener al menos 6 caracteres"
                 icon.classList.remove("fa-check-circle")
             }
             else if(value != password.value){

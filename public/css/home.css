@@ -1,0 +1,157 @@
+.puesto_actual {
+    display: flex;
+    flex-direction: column;
+    background-color: #ececec;
+    align-items: center;
+    width: 30vw;
+    justify-content: center;
+    height: 300px;
+}
+.fila_puesto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo_proximo_partido {
+    margin-right: 12px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+}
+.puesto {
+    font-size: 64px;
+}
+.descripcion_proximo_partido {
+    margin: 0px 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 600px;
+}
+.boton{
+    width: 50%;
+    border: none;
+    color: #8a1538;
+    background-color: #eeeee4;
+    border: 1px solid #8a1538;
+    padding: 5px 10px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    font-size: 22px;
+    margin-top: 25px;
+    text-decoration: none;
+    text-align: center;
+}
+.boton:hover{
+    color: #eeeee4;
+    background-color: #8a1538;
+    border: none;
+    transition: 700ms;
+    cursor: pointer;
+}
+.grupo_1 {
+    background-color: #ececec;
+    width: 100%;
+    margin: 40px 20px;
+    padding: 20px 0px;
+    max-width: 600px;
+}
+.titulo_grupo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+.equipo_1 {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    width: 30%;
+
+}
+.equipo_2 {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 30%;
+
+}
+.equipo_1 input, .equipo_2 input{
+    width: 30px;
+    height: 20px;
+    font-size: 12px;
+}
+.equipo_1 img, .equipo_2 img{
+    margin: 5px;
+}
+.equipo_1 p, .equipo_2 p {
+    margin: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+.main_partidos{
+    display: flex;
+    align-items: center;
+    margin:0px;
+    justify-content: center;
+    height: 35px;
+}
+.img_p{
+    width: 85%;
+    display: flex;
+    align-items: center;
+}
+.fecha{
+    font-size: 14px;
+    width: 75px;
+}
+.equipo_1 .img_p {
+    justify-content: flex-end;
+}
+.flex_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 2.5vh;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.center .boton {
+    max-width: 180px;
+}
+#titulo_dia{
+    font-size: 28px;
+    color: #8a1538;
+    text-align: center;
+    margin: 15px 0px;
+}
+.titulo_proximo_partido {
+    margin: 0px 10px 20px ;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+}
+@media (max-width: 1200px) {
+    .titulo_proximo_partido{
+        font-size: 20px;
+    }
+    .descripcion_proximo_partido {
+        font-size: 16px;
+    }
+}
+@media (max-width: 650px){
+    .partidos_Jugados{
+        flex-direction: column;
+        align-items: center;
+    }
+}

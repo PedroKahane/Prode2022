@@ -18,10 +18,16 @@ const controller = {
           ['puntos', 'DESC'],
           ['plenos', 'DESC']
       ]})
-      let partidos = await db.Partidos.findAll({include:["equipos1","equipos2","grupos"]})
-      let fecha = luxon.DateTime.local().toFormat("yyyy-MM-dd")
-        res.send(usuarios)
-        //res.render("index", {styles:"home.css"})
+      let fechaActual = luxon.DateTime.local().toFormat("yyyy-MM-dd")
+      let partidos = await db.Partidos.findAll({
+        where: {
+          fecha: fechaActual
+        },include : ["equipos1","equipos2","grupos"]
+    });
+      let pronosticos = await db.Pronosticos.findAll({where:{
+        user_id: req.session.userLogged.user_id,
+    }})
+      res.render("index", {styles:"home.css", usuarios: usuarios, partidos:partidos, fecha:fechaActual, pronosticos: pronosticos})
       } catch (error) {
         console.log(error);
       }

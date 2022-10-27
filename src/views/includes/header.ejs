@@ -9,7 +9,7 @@
                 <div class="mbt_line"></div>
                 <div class="mbt_line"></div>
         </div>
-        
+        <% if (locals.isLogged) { %>
         <div class="menu_over">
             <div class="menu_desplegable">
                 <div class="title">
@@ -18,9 +18,10 @@
                 </div>
             </div>
         </div>
+        <% }  %>
         <section id="icon_header">
             <% if (locals.isLogged) { %>
-                <div id="a_img_log">
+                <div id="a_img_log"> 
                     <img src="/uploads/users/<%= locals.userLogged.image %> " alt="" height="60px" width="60px" id="image_perfil">
                     <p class="bienvenida_logged"> Bienvenido <%= locals.userLogged.user_name %> </p>
                 </div>
