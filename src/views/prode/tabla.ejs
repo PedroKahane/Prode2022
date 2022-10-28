@@ -19,7 +19,10 @@
                         <% for( let i = 0; i < usuarios.length; i++ ) { %>
                                 <tr class="fondo1">
                                     <td translate="no"><%= (i + 1)%> º</td>
-                                    <td translate="no"> <%= usuarios[i].user_name%> </td>
+                                    <td translate="no" class="flex"> 
+                                        <img class="imagen_tabla" src="/uploads/users/<%= usuarios[i].image%>" alt="" id="imagen_profile" height="25px" width="25px">
+                                        <p><%= usuarios[i].user_name%></p> 
+                                    </td>
                                     <td translate="no"><%= usuarios[i].puntos%></td>
                                     <td class="plenos" translate="no"> <%= usuarios[i].plenos %></td>
                                 </tr>

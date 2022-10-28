@@ -38,6 +38,22 @@ td{
     width: 180px;
     text-align: center;
 }
+.imagen_tabla{
+    border-radius: 100%;
+    border: 2px solid #8a1538;
+    padding: 0px;
+    margin: 5px 5px 5px 0px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 380px) { 
+    .imagen_tabla{
+        display: none;
+    }
+}
 @media (max-width: 270px) {
     .plenos {
         display: none;
