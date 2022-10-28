@@ -97,11 +97,36 @@ module.exports = {
                                     user_id: element.user_id
                                 }
                             })
+                            db.Pronosticos.update({
+                                puntos: 3
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
+                                    user_id: element.user_id
+                                }
+                            })
                         } else if((resPartido === 0 && resProde === 0) || (resPartido > 0 && resProde > 0) ||(resPartido < 0 && resProde < 0)) {
                             db.User.update({
                                 puntos: (user.puntos + 1),
                             }, {
                                 where: {
+                                    user_id: element.user_id
+                                }
+                            })
+                            db.Pronosticos.update({
+                                puntos: 1
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
+                                    user_id: element.user_id
+                                }
+                            })
+                        } else {
+                            db.Pronosticos.update({
+                                puntos: 0
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
                                     user_id: element.user_id
                                 }
                             })
@@ -133,7 +158,6 @@ module.exports = {
                             user_id: element.user_id
                         }
                     })
-                    
                     let resPartido = (partido.goles1 - partido.goles2)
                     let resProde = (element.equipo1 - element.equipo2)
                     if(element.equipo1 != null && element.equipo2 != null) {
@@ -146,11 +170,36 @@ module.exports = {
                                     user_id: element.user_id
                                 }
                             })
+                            db.Pronosticos.update({
+                                puntos: null
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
+                                    user_id: element.user_id
+                                }
+                            })
                         } else if((resPartido == 0 && resProde == 0) || (resPartido > 0 && resProde > 0) ||(resPartido < 0 && resProde < 0)) {
                             db.User.update({
                                 puntos: (user.puntos - 1),
                             }, {
                                 where: {
+                                    user_id: element.user_id
+                                }
+                            })
+                            db.Pronosticos.update({
+                                puntos: null
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
+                                    user_id: element.user_id
+                                }
+                            })
+                        } else{
+                            db.Pronosticos.update({
+                                puntos: null
+                            }, {
+                                where: {
+                                    game_id: req.params.id,
                                     user_id: element.user_id
                                 }
                             })

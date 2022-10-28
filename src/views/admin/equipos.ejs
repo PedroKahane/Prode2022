@@ -8,6 +8,7 @@
     <body>
         <%- include('../includes/header') %>
         <main>
+            <h1 class="titulo">Presonalizar equipos</h1>
             <section id="sector_paises">
             <% equipos.forEach(element => { %>
                 <form action="/admin/equipos/update/<%= element.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="equipo form_equipo">

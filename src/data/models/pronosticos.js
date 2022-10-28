@@ -19,6 +19,10 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.INTEGER,
                 allowNull: true,
             },
+            puntos:{
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
     },{
         tableName: "pronostico",
         tiemstamps: false

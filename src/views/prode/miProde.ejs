@@ -49,11 +49,19 @@
                           </div>
                           
                         </div>
+                      <% if (prode.puntos == 3) { %>
+                          <p class="gano">+3</p>
+                      <% } else if (prode.puntos == 1) { %>
+                        <p class="empato">+1</p>
+                      <% } else if (prode.puntos == 0) { %>
+                        <p class="perdio">0</p>
+                      <% }  else {%>
                         <% if (date < element.fecha && prode.equipo1 == null && prode.equipo2 == null) { %>
                           <button type="submit" id="submit_create" class="boton">Guardar</button>
                         <% } %>
-                      <% if (prode.equipo1 !=null && prode.equipo2 != null) { %>
-                            <button type="submit" id="submit_create" class="boton">Editar</button>
+                        <% if (date < element.fecha && prode.equipo1 !=null && prode.equipo2 != null) { %>
+                              <button type="submit" id="submit_create" class="boton">Editar</button>
+                        <% } %>
                       <% } %>
                     </form>
                   <% } %>

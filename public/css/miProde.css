@@ -92,3 +92,15 @@
     width: auto;
     height: 25px;
 }
+.gano {
+    color: rgb(0, 153, 0);
+    font-size: 18px;
+}
+.perdio {
+    color: rgb(156, 1, 1);
+    font-size: 18px;
+}
+.empato {
+    color: rgb(163, 144, 36);
+    font-size: 18px;
+}

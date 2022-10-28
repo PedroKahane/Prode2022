@@ -15,7 +15,7 @@
                             </div>
                             <div class="fila_puesto">
                                 <p class="descripcion_proximo_partido">PUNTOS:</p>
-                                <p class="descripcion_proximo_partido"><%= locals.userLogged.puntos %></p>
+                                <p class="descripcion_proximo_partido"><%= usuarios[i].puntos %></p>
                             </div>
                             <a href="/prode/tabla" class="boton">Ir a la tabla</a>
                         </div>
@@ -24,9 +24,7 @@
                     <% } %>
                 <div class="puesto_actual">
                     <p class="titulo_proximo_partido"> Inscripcion al Prode:</p>
-                    <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source="button">
-</script>
+                    <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source="button"> </script>
 
 
                 </div>
@@ -61,6 +59,15 @@ data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source=
                                                 </div>
                                             
                                             </div>
+                                            <% if (prode.puntos == 3) { %>
+                                                <p class="gano">+3</p>
+                                            <% } %>
+                                            <% if (prode.puntos == 1) { %>
+                                              <p class="empato">+1</p>
+                                            <% } %>
+                                            <% if (prode.puntos == 0) { %>
+                                              <p class="perdio">0</p>
+                                            <% } %>
                                         </div>
                                     <% } %>
                                 <% }) %>

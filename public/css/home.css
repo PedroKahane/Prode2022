@@ -141,6 +141,18 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 32px;
 }
+.gano {
+    color: rgb(0, 153, 0);
+    font-size: 18px;
+}
+.perdio {
+    color: rgb(156, 1, 1);
+    font-size: 18px;
+}
+.empato {
+    color: rgb(163, 144, 36);
+    font-size: 18px;
+}
 @media (max-width: 1200px) {
     .titulo_proximo_partido{
         font-size: 20px;

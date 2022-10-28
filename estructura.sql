@@ -63,6 +63,7 @@ CREATE TABLE `pronostico` (
   `user_id` int(10) unsigned NOT NULL,
   `equipo1` int(11) DEFAULT NULL,
   `equipo2` int(11) DEFAULT NULL,
+  `puntos` int(11) DEFAULT NULL,
   `createdAt` varchar(255) DEFAULT NULL,
   `updatedAt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
