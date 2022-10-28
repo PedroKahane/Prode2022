@@ -1,0 +1,68 @@
+#sector_paises{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+.equipo{
+    max-width: 250px;
+    width: 100%;
+    background-color: #eeeee4;
+    height: auto;
+    margin: 25px;
+    border: 1px solid black;
+}
+.titulo_pais{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0px 15px;
+}
+.equipo fieldset label{
+    text-align: center;
+    font-size: 14px;
+    max-width: 220px;
+}
+.equipo fieldset input{
+    text-align: center;
+    font-size: 18px;
+    max-width: 220px;
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    margin: 15px 0px;
+    justify-content: center;
+}
+.center{
+    text-align: center;
+}
+.boton{
+    margin-left: 10px;
+    align-self: center;
+    background-color: #8a1538;
+    color: #eeeee4;
+    border: 0px;
+    padding: 5px;
+    border-radius: 15px;
+}
+.boton:hover {
+    background-color: #eeeee4;
+    color: #8a1538;
+    border: 1px solid #8a1538;
+    cursor: pointer;
+    transition: 700ms;
+}
+.boton_contender{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.error, #error_image {
+    margin-top: 5px;
+    margin-left: 10px;
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+}

@@ -1,9 +1,7 @@
-const { validationResult } = require('express-validator');
 const path = require('path')
 const fs = require('fs')
 const sequelize = require('sequelize')
 const db = require("../data/models/index");
-const { includes } = require('lodash');
 const {Op} = sequelize
 const {like} = Op
 const luxon = require('luxon');
@@ -186,5 +184,44 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
+    }, 
+    equipos: async(req,res) => {
+        try{
+            let  equipos =  await db.Equipos.findAll()
+            return res.render('admin/equipos', {styles: "equipos.css", equipos:equipos});
+
+        } catch(error){
+            console.log(error)
+        }
+    },
+    editEquipo:async (req,res) => {
+        let equipo = await db.Equipos.findOne(
+            {
+                where: { 
+                    id: req.params.id
+                }
+            }
+        )
+        if(req.file != undefined && equipo.imagen != null){
+            let imagenFrente = path.resolve(__dirname,"../../public/uploads/banderas",equipo.imagen)
+            if(fs.existsSync(imagenFrente)) {
+                fs.unlinkSync(imagenFrente)
+            }
+        }
+        try {
+            db.Equipos.update({
+                color:req.body.color,
+                imagen: req.file != undefined ? req.file.filename : equipo.imagen,
+
+            }, {
+                where: {
+                    id: req.params.id,
+                }
+            })
+            return res.redirect("/admin/equipos")
+        } catch (error) {
+            console.log(error);
+        }
     }
+
 }

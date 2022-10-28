@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <%- include('../includes/head') %>
+    </head>
+    
+    <body>
+        <%- include('../includes/header') %>
+        <main>
+            <section id="sector_paises">
+            <% equipos.forEach(element => { %>
+                <form action="/admin/equipos/update/<%= element.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="equipo form_equipo">
+                    <p class="titulo_pais"><%= element.pais %> </p>
+                    <fieldset>
+                        <label for="color">
+                            <p class="center">
+                                Ingresar color del pais:
+                            </p>
+                        </label>
+                        <input type="color" name="color" id="color">
+                    </fieldset>
+                    <fieldset>
+                        <label for="image">
+                            <p class="center">
+                            Ingresar bandera:
+                            </p>
+                        </label>
+                        <input type="file" name="image" id="image" class="image">
+                        <p class="error"></p>
+                        <% if (locals.errors && errors.image) { %>
+                            <p class="error"> 
+                                <%= errors.image.msg %>
+                            </p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset class="boton_contender">
+                        <input class="boton" type="submit" value="Enviar">
+                    </fieldset>
+                </form>
+            <% }) %>
+            </section>
+        </main>
+    </body>
+    <script src="/js/equipos.js"></script>
+</html>

@@ -27,7 +27,7 @@
                     <div class="contenedor_partido">
                     <p class="ronda_partido"> <%= partido.grupos.nombre %> </p>
                         <% if (partido.equipo1 == null && partido.equipo_2 == null) { %>
-                            <form action="/admin/partidos/update/<%= partido.game_id %> ?_method=PUT" method="POST" class="flex">
+                            <form action="/admin/partidos/update/<%= partido.game_id %>?_method=PUT" method="POST" class="flex">
                             <% for(let index = 1; index < 3; index++ ) { %>
                                 <div class="flex_column">
                                     <p class="equipos">Equipo <%= index %> :</p>

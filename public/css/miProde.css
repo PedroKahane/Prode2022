@@ -88,3 +88,7 @@
     cursor: pointer;
     transition: 700ms;
 }
+.img_p img{
+    width: auto;
+    height: 25px;
+}

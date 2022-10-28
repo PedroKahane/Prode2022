@@ -27,13 +27,12 @@
                 </div>
                 <div class="dropdown hidden none">
                     <a href="/user/profile">Profile</a>
-                    <% if (locals.isLogged) { %>
-                        <a href="/user/logout">Logout</a>
-                    <% } %> 
+                    <a href="/user/logout">Logout</a>
                     <% if (locals.userLogged && locals.userLogged.admin) { %>
                         <a href="/admin/partidos">Administrar partidos</a>
                         <a href="/admin/resultados">Administrar resultados</a>
-                    <% } %> 
+                    <% } %>
+                    <a href="/admin/equipos">Administrar Equipos</a>
                 </div>
             <% }  %>
                 

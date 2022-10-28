@@ -53,7 +53,7 @@ const storage = multer.diskStorage({
       let file = req.file;
       let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
 
-      if (!file) {
+      if (file != undefined) {
         throw new Error('Tenés que subir una imagen');
       } else {
         let fileExtension = path.extname(file.originalname);

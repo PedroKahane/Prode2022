@@ -43,7 +43,9 @@ data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source=
                                         <p class="fecha"><%= element.fecha %> </p>
                                             <div class="equipo_1">
                                                 <div class="img_p left">
-                                                    <img src="<% element.equipos1.imagen %>" alt="<% element.equipos1.pais %>">
+                                                    <% if (element.equipos1.imagen != null) { %>
+                                                        <img src="/uploads/banderas/<%= element.equipos1.imagen %>" alt="<% element.equipos1.pais %>">
+                                                    <% } %>
                                                     <p><%= element.equipos1.pais %>
                                                 </div>
                                                     <p><%= prode.equipo1 %> </p>
@@ -53,7 +55,9 @@ data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source=
                                                     <p><%= prode.equipo2 %> </p>
                                                 <div class="img_p right">
                                                     <p><%= element.equipos2.pais %>
-                                                    <img src="<% element.equipos2.imagen %>" alt="<% element.equipos2.pais %>">
+                                                        <% if (element.equipos2.imagen != null) { %>
+                                                            <img src="/uploads/banderas/<%= element.equipos2.imagen %>" alt="<% element.equipos2.pais %>">
+                                                        <% } %>
                                                 </div>
                                             
                                             </div>

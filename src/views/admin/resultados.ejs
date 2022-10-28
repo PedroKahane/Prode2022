@@ -21,8 +21,11 @@
                     <p class="fecha"><%= element.fecha %> </p>
                     <div class="equipo_1">
                       <div class="img_p left">
-                        <img src="<% element.equipos1.imagen %>" alt="<% element.equipos1.pais %>">
-                        <p><%= element.equipos1.pais %>
+                        <% if (element.equipos1.imagen  != null) { %>
+                          <img src="/uploads/banderas/<%= element.equipos1.imagen %>" alt="<% element.equipos1.pais %>">
+                        <% } %>
+                       
+                        <p><%= element.equipos1.pais %></p>
                       </div>
                       <% if (element.goles1 == null) { %>
                         <input required min="0" type="number" name="local" id="local">
@@ -38,8 +41,10 @@
                             <p><%= element.goles2 %> </p>
                             <% }%>
                       <div class="img_p right">
-                        <p><%= element.equipos2.pais %>
-                        <img src="<% element.equipos2.imagen %>" alt="<% element.equipos2.pais %>">
+                        <p><%= element.equipos2.pais %></p>
+                        <% if (element.equipos2.imagen != null) { %>
+                          <img src="/uploads/banderas/<%= element.equipos2.imagen %>" alt="<% element.equipos2.pais %>">
+                        <% }%>
                       </div>
                         
                     </div>
