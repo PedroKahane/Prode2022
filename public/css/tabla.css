@@ -12,12 +12,12 @@
 .destacado{
     font-family:'Montserrat';
     font-weight:bold;
-    font-size: 22px;
+    font-size: 16px;
     background-color:#8a1538;
     color: #eeeee4;
   }
 .fondo1{
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Montserrat';
     color: #8a1538;
 }
@@ -37,4 +37,9 @@ table{
 td{
     width: 180px;
     text-align: center;
+}
+@media (max-width: 270px) {
+    .plenos {
+        display: none;
+    }
 }

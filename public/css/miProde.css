@@ -3,7 +3,6 @@
     width: 100%;
     margin: 40px 20px;
     padding: 20px 0px;
-    max-width: 600px;
 }
 .titulo_grupo {
     font-family: 'Montserrat', sans-serif;
@@ -30,6 +29,7 @@
     width: 30px;
     height: 20px;
     font-size: 12px;
+    border: none;
 }
 .equipo_1 img, .equipo_2 img{
     margin: 5px;
@@ -56,7 +56,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45vw;
+    max-width: 600px;
+    width: 100%;
     margin: 20px 2.5vh;
     
 }
@@ -103,4 +104,28 @@
 .empato {
     color: rgb(163, 144, 36);
     font-size: 18px;
+}
+.equipo_1 p {
+    text-align: right;
+}
+.equipo_2 p {
+    text-align: left;
+}
+@media (max-width: 600px) {
+    .fecha{
+        display: none;
+    }
+    .img_p img {
+        display: none;
+    }
+    .flex_center{
+        margin: 20px 0px
+    }
+    .grupo_1 {
+        margin: 40px 5px;
+    }
+    .puntos {
+        font-size: 12px;
+        margin-left: 15px;
+    }
 }

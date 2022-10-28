@@ -2,9 +2,11 @@
     display: flex;
 }
 main{
+    margin-top: 50px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 #contenedor_partidos{
     background-color: #eeeee4;
@@ -70,4 +72,22 @@ main{
     font-size: 18px;
     font-weight: bold;
     margin: 20px 0px;
+}
+@media (max-width: 500px) {
+    .contenedor_partido{
+        flex-direction: column;
+        margin: 25px 0px;
+    }
+    .flex{
+        width: 100%;
+    }
+    .flex_column{
+        width: 30%;
+    }
+    #contenedor_partidos{
+        padding: 15px 0px;
+    }
+    .ronda_partido{
+        font-size: 16px;
+    }
 }

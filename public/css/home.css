@@ -3,7 +3,9 @@
     flex-direction: column;
     background-color: #ececec;
     align-items: center;
-    width: 30vw;
+    max-width: 450px;
+    margin: 10px;
+    width: 100%;
     justify-content: center;
     height: 300px;
 }
@@ -30,6 +32,7 @@
 .flex{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-around;
     height: 600px;
 }
@@ -110,7 +113,6 @@
 }
 .fecha{
     font-size: 14px;
-    width: 75px;
 }
 .equipo_1 .img_p {
     justify-content: flex-end;
@@ -166,4 +168,29 @@
         flex-direction: column;
         align-items: center;
     }
+    .fecha{
+        display: none;
+    }
+    #titulo_dia{
+        font-size: 18px;
+    }
+    .img_p img{
+        display: none;
+    }
 }
+    @media (max-width:350px) {
+        #titulo_dia{
+            font-size: 14px;
+        } 
+        .boton{
+            width: 90%;
+            font-size: 15px;
+        }
+        .img_p p {
+            font-size: 11px;
+        }
+        .puntos {
+            font-size: 12px;
+            margin-left: 15px;
+        }
+    }

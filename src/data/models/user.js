@@ -26,6 +26,11 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },  
+            confirm:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
             },
             puntos:{
                 type: DataTypes.INTEGER,

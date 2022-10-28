@@ -28,7 +28,7 @@
                             <% } %>
                             <p><%= element.equipos1.pais %></p>
                           </div>
-                          <% if (prode.equipo1 == null) { %>
+                          <% if (prode.equipo1 == null && date < element.fecha) { %>
                             <input required min="0" type="number" name="local" id="local">
                           <% }  else {%>
                             <p><%= prode.equipo1 %> </p>
@@ -36,7 +36,7 @@
                         </div>
                         <p>-</p>
                         <div class="equipo_2">
-                          <% if (prode.equipo2 == null) { %>
+                          <% if (prode.equipo2 == null && date < element.fecha) { %>
                               <input required min="0" type="number" name="visitante" id="visitante">
                             <% }  else {%>
                               <p><%= prode.equipo2 %> </p>
@@ -50,11 +50,11 @@
                           
                         </div>
                       <% if (prode.puntos == 3) { %>
-                          <p class="gano">+3</p>
+                          <p class="gano puntos">+3</p>
                       <% } else if (prode.puntos == 1) { %>
-                        <p class="empato">+1</p>
+                        <p class="empato puntos">+1</p>
                       <% } else if (prode.puntos == 0) { %>
-                        <p class="perdio">0</p>
+                        <p class="perdio puntos">0</p>
                       <% }  else {%>
                         <% if (date < element.fecha && prode.equipo1 == null && prode.equipo2 == null) { %>
                           <button type="submit" id="submit_create" class="boton">Guardar</button>

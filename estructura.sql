@@ -50,6 +50,7 @@ CREATE TABLE `usuarios` (
   `user_name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `admin` tinyint(4) DEFAULT NULL,
+   `confirm` tinyint(4) DEFAULT NULL,
   `updatedAt` varchar(255) DEFAULT NULL,
   `createdAt` varchar(255) DEFAULT NULL,
   `puntos` int(11) NOT NULL,

@@ -1,7 +1,8 @@
 let dorpdown = document.querySelector(".dropdown")
 let profile = document.querySelector("#a_img_log")
-let bars = document.querySelector(".burger-menu")
-let menu = document.querySelector("#menu_header")
+let bars = document.querySelector(".menu_mobile_bt")
+let menu = document.querySelector(".menu_over")
+let main = document.querySelector("main")
 
 window.addEventListener("load", function(){
   if(profile){
@@ -16,6 +17,7 @@ if(profile){
     if (dorpdown.classList.contains('hidden')) {
         dorpdown.classList.remove('hidden');
         dorpdown.classList.add('show')
+        menu.classList.add('menu_over')
       }else{
         dorpdown.classList.add('hidden');
         dorpdown.classList.remove("show")
@@ -24,11 +26,12 @@ if(profile){
 }
 
 bars.addEventListener("click", function(){
-    if (menu.classList.contains('hidden_burguer')) {
-        menu.classList.remove('hidden_burguer');
-        menu.classList.add('show_burguer')
+    if (menu.classList.contains('menu_over')) {
+        menu.classList.remove('menu_over');
+        dorpdown.classList.add('hidden');
+        dorpdown.classList.remove("show")
       }else{
-        menu.classList.add('hidden_burguer')
-        menu.classList.remove('show_burguer')
+        menu.classList.add('menu_over')
+        main.classList.remove("main")
       }
     })

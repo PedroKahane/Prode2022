@@ -48,7 +48,7 @@
                       </div>
                         
                     </div>
-                    <% if (element.goles1 == null && element.goles2 == null) { %>
+                    <% if (date >= element.fecha && element.goles1 == null && element.goles2 == null) { %>
                       <button type="submit" id="submit_create" class="boton">Guardar</button>
                     <% } %>
                   <% if (element.goles1 !=null && element.goles2 != null) { %>

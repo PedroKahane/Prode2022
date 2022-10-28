@@ -60,13 +60,13 @@
                                             
                                             </div>
                                             <% if (prode.puntos == 3) { %>
-                                                <p class="gano">+3</p>
+                                                <p class="gano puntos">+3</p>
                                             <% } %>
                                             <% if (prode.puntos == 1) { %>
-                                              <p class="empato">+1</p>
+                                              <p class="empato puntos">+1</p>
                                             <% } %>
                                             <% if (prode.puntos == 0) { %>
-                                              <p class="perdio">0</p>
+                                              <p class="perdio puntos">0</p>
                                             <% } %>
                                         </div>
                                     <% } %>
@@ -80,4 +80,17 @@
             <% } %>
         </main>
 </body>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $(".menu_mobile_bt").click(function(){
+            $(".menu_over").slideToggle();
+          });
+      });
+      $( window ).resize(function() {
+          setMenuDisplay();
+          closeMenu($(".menu_mobile_bt"));
+      });
+  </script>
 </html>
