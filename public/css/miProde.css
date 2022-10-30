@@ -29,7 +29,8 @@
     width: 30px;
     height: 20px;
     font-size: 12px;
-    border: none;
+    border: 1px solid #8a1538;
+    border-radius: 4px;
 }
 .equipo_1 img, .equipo_2 img{
     margin: 5px;
