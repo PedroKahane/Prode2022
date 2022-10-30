@@ -28,17 +28,6 @@ const storage = multer.diskStorage({
                   .isEmail().withMessage('Debes ingresar un formato de correo válido'),
     body('password').notEmpty().withMessage('Tenés que ingresar una contraseña').bail()
                     .isLength({min:6, max:20}).withMessage('Debe contener entre 6 y 20 caracteres'),
-    body('image').custom((value, { req }) => {
-      let file = req.file;
-      let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
-      if (file != undefined) {
-        let fileExtension = path.extname(file.originalname);
-        if (!acceptedExtensions.includes(fileExtension)) {
-          throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`);
-        }
-      }
-      return true;
-    })
   ];
   const validacionesProfile = [
     body('firstName').notEmpty().withMessage('Tenés que ingresar un nombre'),
@@ -46,23 +35,6 @@ const storage = multer.diskStorage({
     body('email').notEmpty().withMessage('Tenés que ingresar un correo electrónico').bail()
                   .isEmail().withMessage('Debes ingresar un formato de correo válido'),
 
-  ];
-
-  const validacionesAvatar = [
-    body('image').custom((value, { req }) => {
-      let file = req.file;
-      let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
-
-      if (file != undefined) {
-        throw new Error('Tenés que subir una imagen');
-      } else {
-        let fileExtension = path.extname(file.originalname);
-        if (!acceptedExtensions.includes(fileExtension)) {
-          throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`);
-        }
-      }
-      return true;
-    })
   ];
 
   const validationsPassword = [
@@ -76,7 +48,7 @@ const storage = multer.diskStorage({
   router.get("/register" ,validLoggin,controller.register);
   router.get("/profile" ,[authMiddleware, userLogged],controller.profile);
   router.put("/update",[authMiddleware,validacionesProfile], controller.update);
-  router.put("/avatar", [upload.single("image")],validacionesAvatar, controller.avatar);
+  router.put("/avatar", [upload.single("image")], controller.avatar);
   router.put("/forgotPassword", [authMiddleware, validationsPassword], controller.forgotPassword)
   router.put("/avatarDefault",controller.avatarDefault);
   router.post("/access",controller.access);
