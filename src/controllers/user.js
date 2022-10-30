@@ -287,6 +287,8 @@ module.exports = {
                     user_id: req.session.userLogged.user_id
                 }
             })
+            req.session.userLogged = user;
+            res.locals.userLogged = req.session.userLogged
         res.render("users/profile",{styles:"profile.css",user: user })},
     logout: (req,res) =>{
         req.session.destroy();

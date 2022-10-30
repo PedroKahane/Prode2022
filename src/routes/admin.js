@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 let upload = multer({ storage: storage })
 router.get('/partidos' ,userAdmin,controller.partidos);
 router.get("/resultados",userAdmin, controller.partidosParaCargar)
-router.get("/equipos", controller.equipos)
+router.get("/equipos",userAdmin, controller.equipos)
 router.put("/partidos/update/:id",userAdmin,controller.asociarPartidos)
 router.put("/rondas/update/:id",userAdmin,controller.activarPartidos)
 router.put("/partido/resultado/:id",controller.cargarResultado)
