@@ -246,9 +246,10 @@ module.exports = {
        
        try{
             const result = await cloudinary.v2.uploader.upload(req.file.path)
+            console.log(result)
             db.User.update( {
                 image: req.file != undefined ? result.secure_url : "default.jpg",
-                image_id:req.file != undefined ? result.image_id : null,
+                image_id: req.file != undefined ? result.image_id : null,
             }, {
                 where: {
                     user_id: req.session.userLogged.user_id
