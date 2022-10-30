@@ -5,7 +5,6 @@ const method = require('method-override');
 const session = require('express-session');
 const isLogged = require("./middlewares/userLogged")
 const cookies = require('cookie-parser')
-const AWS  = require('aws-sdk');
 app.use(express.static('public'));
 
 
@@ -21,13 +20,6 @@ app.use(cookies())
 app.use(isLogged)
 // App Access public
 app.use(express.static(path.resolve(__dirname,"../public")));
-
-
-AWS.config.update({
-    accessKeyId: "AKIAUUUTGJ3PD3NYUGWZ",
-    secretAccessKey: "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",
-    region: 'sa-east-1' 
-});
 
 
 //URL encode  - Para que nos pueda llegar la información desde el formulario al req.body
