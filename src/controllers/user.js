@@ -20,9 +20,13 @@ module.exports = {
 
         if (!resultValidation.isEmpty()) {
             if(req.file){
-                let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
-                    fs.unlinkSync(imagenFrente)
+                if(user.image_id != null) {
+                    try {
+                        const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                        console.log(result);
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
             }
             return res.render('users/register', {
@@ -46,9 +50,13 @@ module.exports = {
                     })
                 if(mailInDB) {
                     if(req.file != undefined){
-                        let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
-                            fs.unlinkSync(imagenFrente)
+                        if(user.image_id != null) {
+                            try {
+                                const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                                console.log(result);
+                            } catch (error) {
+                                console.log(error);
+                            }
                         }
                     }
                     return res.render('users/register', {
@@ -62,9 +70,13 @@ module.exports = {
                     });
                 } else if(userInDB){
                     if(req.file != undefined){
-                        let imagenFrente = path.resolve(__dirname,"../../public/uploads/users/",req.file.filename)
-                        if(fs.existsSync(imagenFrente) && req.file.filename != "default.jpg") {
-                            fs.unlinkSync(imagenFrente)
+                        if(user.image_id != null) {
+                            try {
+                                const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                                console.log(result);
+                            } catch (error) {
+                                console.log(error);
+                            }
                         }
                     }
                     return res.render('users/register', {
@@ -77,14 +89,13 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else{
-                    const result = await uploadFile(req.file);
-                    console.log("S3 response", result);
-
+                    const result = await cloudinary.v2.uploader.upload(req.file.path)
                     db.User.create( {
                         email : req.body.email,
                         user_name:req.body.userName,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? req.file.filename : "default.jpg",
+                        image: req.file != undefined ? result.secure_url : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
+                        image_id: req.file != undefined ? result.public_id : null,
                         admin: String(req.body.email).includes("@prode") ? 1 : 0,
                         puntos: 0
                     })
@@ -238,17 +249,21 @@ module.exports = {
                         user_id: req.session.userLogged.user_id
                     }
                 })
-           let imagenFrente = path.resolve(__dirname,"../../public/uploads/users",user.image)
-           if(fs.existsSync(imagenFrente) && user.image != "default.jpg") {
-             fs.unlinkSync(imagenFrente)
-           }
+                if(user.image_id != null) {
+                    try {
+                        const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                        console.log(result);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
        }
        
        try{
             const result = await cloudinary.v2.uploader.upload(req.file.path)
             console.log(result)
             db.User.update( {
-                image: req.file != undefined ? result.secure_url : "default.jpg",
+                image: req.file != undefined ? result.secure_url : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
                 image_id: req.file != undefined ? result.public_id : null,
             }, {
                 where: {
@@ -278,7 +293,7 @@ module.exports = {
             }
         }
            db.User.update( {
-               image: "default.jpg",
+               image: "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
                image_id: null
            }, {
                where: {
