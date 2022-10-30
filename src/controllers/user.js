@@ -273,6 +273,7 @@ module.exports = {
         }
            db.User.update( {
                image: "default.jpg",
+               image_id: null
            }, {
                where: {
                    user_id: req.session.userLogged.user_id
