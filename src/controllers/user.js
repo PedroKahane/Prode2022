@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const path = require('path')
 const fs = require('fs')
+const { uploadFile, getFileStream } = require("../../s3")
 const sequelize = require('sequelize')
 const bcrypt = require('bcryptjs');
 const db = require("../data/models/index");
@@ -76,11 +77,14 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else{
+                    const result = await uploadFile(req.file);
+                    console.log("S3 response", result);
+
                     db.User.create( {
                         email : req.body.email,
                         user_name:req.body.userName,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? req.file.filename : "default.jpg",
+                        image: req.file != undefined ? result.Key : "default.jpg",
                         admin: String(req.body.email).includes("@prode") ? 1 : 0,
                         puntos: 0
                     })
@@ -94,8 +98,24 @@ module.exports = {
                             })
                         });
                     } catch (error) {
+                        db.User.destroy({
+                            where: {
+                                user_name:req.body.userName
+                            }
+                        })
                         console.log(error);
-                    }
+                        return res.render('users/register', {
+                            errors: {
+                                email: {
+                                    msg: 'Ha habido un error en el proceso, vuelva a intentar registrarse :)'
+                                }
+                            },
+                            oldData: req.body,
+                            styles:"login.css"   
+                          });
+                                        
+                    }                    
+                    
                     return res.redirect('/user/login');
         
                 }
@@ -271,6 +291,10 @@ module.exports = {
                     user_id: req.session.userLogged.user_id
                 }
             })
+        let imagen = (req,res) => {
+            const readStream = getFileStream(user.image);
+            readStream.pipe(res)
+        }
         res.render("users/profile",{styles:"profile.css",user: user })},
     logout: (req,res) =>{
         req.session.destroy();
