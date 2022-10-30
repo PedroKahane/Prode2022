@@ -59,7 +59,10 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else{
-                    const result = await cloudinary.v2.uploader.upload(req.file.path)
+                    if(req.file != undefined){
+                        const result = await cloudinary.v2.uploader.upload(req.file.path)
+                    }
+                    
                     db.User.create( {
                         email : req.body.email,
                         user_name:req.body.userName,
