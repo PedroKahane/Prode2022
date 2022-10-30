@@ -19,16 +19,6 @@ module.exports = {
         const resultValidation = validationResult(req);
 
         if (!resultValidation.isEmpty()) {
-            if(req.file){
-                if(user.image_id != null) {
-                    try {
-                        const result = await cloudinary.v2.uploader.destroy(user.image_id)
-                        console.log(result);
-                    } catch (error) {
-                        console.log(error);
-                    }
-                }
-            }
             return res.render('users/register', {
                 styles:"login.css", 
                 errors: resultValidation.mapped(),
@@ -49,15 +39,6 @@ module.exports = {
                         }
                     })
                 if(mailInDB) {
-                    if(req.file != undefined){
-                            try {
-                                const result = await cloudinary.v2.uploader.destroy(user.image_id)
-                                console.log(result);
-                            } catch (error) {
-                                console.log(error);
-    
-                        }
-                    }
                     return res.render('users/register', {
                       errors: {
                           email: {
@@ -68,16 +49,6 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else if(userInDB){
-                    if(req.file != undefined){
-                        if(user.image_id != null) {
-                            try {
-                                const result = await cloudinary.v2.uploader.destroy(user.image_id)
-                                console.log(result);
-                            } catch (error) {
-                                console.log(error);
-                            }
-                        }
-                    }
                     return res.render('users/register', {
                       errors: {
                         user_name: {
