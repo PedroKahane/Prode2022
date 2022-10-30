@@ -245,7 +245,7 @@ module.exports = {
        }
        
        try{
-            const result = cloudinary.v2.uploader.upload(req.file.path)
+            const result = await cloudinary.v2.uploader.upload(req.file.path)
             return res.send(result)
             db.User.update( {
                 image: req.file != undefined ? req.file.filename : "default.jpg",
