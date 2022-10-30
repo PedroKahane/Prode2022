@@ -270,7 +270,12 @@ module.exports = {
                 }
             })
         if(user.image_id != null) {
-            await cloudinary.v2.uploader.destroy(user.image_id)
+            try {
+                const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                console.log(result);
+            } catch (error) {
+                console.log(error);
+            }
         }
            db.User.update( {
                image: "default.jpg",
