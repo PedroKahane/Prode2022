@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const path = require('path')
 const fs = require('fs')
+const cloudinary = require('cloudinary')
 const sequelize = require('sequelize')
 const bcrypt = require('bcryptjs');
 const db = require("../data/models/index");
@@ -83,7 +84,7 @@ module.exports = {
                         email : req.body.email,
                         user_name:req.body.userName,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? result.Key : "default.jpg",
+                        image: req.file != undefined ? req.file.filename : "default.jpg",
                         admin: String(req.body.email).includes("@prode") ? 1 : 0,
                         puntos: 0
                     })
@@ -243,15 +244,17 @@ module.exports = {
            }
        }
        
-       try{  
-           db.User.update( {
-               image: req.file != undefined ? req.file.filename : "default.jpg",
-           }, {
-               where: {
-                   user_id: req.session.userLogged.user_id
-               }
-           })
-           return res.redirect('/user/profile');
+       try{
+            const result = cloudinary.v2.uploader.upload(req.file.path)
+            res.send(result)
+            db.User.update( {
+                image: req.file != undefined ? req.file.filename : "default.jpg",
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id
+                }
+            })
+            return res.redirect('/user/profile');
    
        } catch(error){
            console.log(error)

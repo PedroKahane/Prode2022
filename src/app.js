@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 const method = require('method-override');
 const session = require('express-session');
 const isLogged = require("./middlewares/userLogged")
@@ -8,6 +9,9 @@ const cookies = require('cookie-parser')
 app.use(express.static('public'));
 
 
+cloudinary.config({
+    secure: true
+  });
 
 //uso de ssesiones para los usuarios logeados
 app.use(session({secret: 'Shh, Its a secret',
