@@ -22,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
             image:{
                 type: DataTypes.STRING
             },
+            image_id:{
+                type: DataTypes.STRING,
+                allowNull:true,
+            },
             admin:{
                 type: DataTypes.INTEGER,
                 allowNull: false,

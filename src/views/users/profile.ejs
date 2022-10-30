@@ -10,7 +10,7 @@
                 <article class="imagen">
                     <p class="title_img">Imagen de Perfil:</p>
                     <figure id="figure_profile">
-                        <img src="/uploads/users/<%= user.image%>" alt="" id="imagen_profile">
+                        <img src="<%= user.image%>" alt="" id="imagen_profile">
                     </figure>
                     <form id="delete_form" action="/user/avatarDefault?_method=PUT" method="POST">
                         <input type="hidden" name="id" value="<%= user.id %>">

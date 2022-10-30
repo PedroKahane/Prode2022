@@ -248,6 +248,7 @@ module.exports = {
             const result = await cloudinary.v2.uploader.upload(req.file.path)
             db.User.update( {
                 image: req.file != undefined ? result.secure_url : "default.jpg",
+                image_id:req.file != undefined ? public_id : null,
             }, {
                 where: {
                     user_id: req.session.userLogged.user_id
@@ -267,9 +268,8 @@ module.exports = {
                     user_id: req.session.userLogged.user_id
                 }
             })
-        let imagenFrente = path.resolve(__dirname, "../../public/uploads/users",user.image)
-        if(fs.existsSync(imagenFrente) && user.image != "default.jpg") {
-            fs.unlinkSync(imagenFrente)
+        if(user.image_id != null) {
+            await cloudinary.v2.uploader.destroy(user.image_id)
         }
            db.User.update( {
                image: "default.jpg",
