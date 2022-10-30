@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const path = require('path')
 const fs = require('fs')
-const { uploadFile, getFileStream } = require("../../s3")
 const sequelize = require('sequelize')
 const bcrypt = require('bcryptjs');
 const db = require("../data/models/index");
@@ -291,10 +290,6 @@ module.exports = {
                     user_id: req.session.userLogged.user_id
                 }
             })
-        let imagen = (req,res) => {
-            const readStream = getFileStream(user.image);
-            readStream.pipe(res)
-        }
         res.render("users/profile",{styles:"profile.css",user: user })},
     logout: (req,res) =>{
         req.session.destroy();
