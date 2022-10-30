@@ -50,13 +50,12 @@ module.exports = {
                     })
                 if(mailInDB) {
                     if(req.file != undefined){
-                        if(user.image_id != null) {
                             try {
                                 const result = await cloudinary.v2.uploader.destroy(user.image_id)
                                 console.log(result);
                             } catch (error) {
                                 console.log(error);
-                            }
+    
                         }
                     }
                     return res.render('users/register', {
