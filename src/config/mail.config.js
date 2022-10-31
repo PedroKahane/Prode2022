@@ -8,7 +8,7 @@ var transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: "prodeplv@gmail.com",
-        pass: secrets.PASSWORD_GMAIL
+        pass: process.env.PASSWORD_GMAIL
     },
     enable_starttls_auto: true,
     tls: { rejectUnauthorized: false }
