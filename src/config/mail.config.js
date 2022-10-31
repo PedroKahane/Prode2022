@@ -49,7 +49,7 @@ var transporter = nodemailer.createTransport({
             text-decoration:none;
             font-weight:bold;
             margin:15px"
-                href="https://prode-plv-qatar.herokuapp.com/user/confirm/${ token }"
+                href="https://prode-plv-qatar.herokuapp.com/user/confirmed/${ token }"
                 target="_blank"
             >Confirmar Cuenta</a>
         </div>

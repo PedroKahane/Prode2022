@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
   router.get("/register" ,validLoggin,controller.register);
   router.get("/profile" ,[authMiddleware, userLogged],controller.profile);
   router.get("/confirm/:id" ,validLoggin,controller.confirmView);
-  router.get('/confirm/:token',controller.confirm);
+  router.get('/confirmed/:token',controller.confirm);
   router.get('/sendMail/:id',controller.sendMail);
   router.put("/update",[authMiddleware,validacionesProfile], controller.update);
   router.put("/avatar", [upload.single("image")], controller.avatar);
