@@ -14,7 +14,7 @@ const { getTemplate, sendEmail } = require('../config/mail.config');
 module.exports = {
     login: (req,res) => 
     {
-        res.render("users/login", {styles:"login.css",success: false})
+        res.render("users/login", {styles:"login.css",success:false})
 
     },
     processRegister: async (req, res) => {
