@@ -1,4 +1,2 @@
 .DS_Store
 .env
-/src/config/jwt.config.js
-/src/config/mail.config.js
