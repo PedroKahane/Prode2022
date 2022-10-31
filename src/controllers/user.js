@@ -54,7 +54,7 @@ module.exports = {
                 } else if(userInDB){
                     return res.render('users/register', {
                       errors: {
-                        user_name: {
+                        userName: {
                               msg: 'Este nombre de usuario ya existe, pruebe con otro'
                           }
                       },
