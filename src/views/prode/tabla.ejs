@@ -17,6 +17,17 @@
                             <td translate="no" class="titulo_tabla plenos">Plenos</td translate="no">
                         </tr>
                         <% for( let i = 0; i < usuarios.length; i++ ) { %>
+                            <% if (usuarios[i].user_id == locals.userLogged.user_id) { %>
+                                <tr class="destacado">
+                                    <td translate="no"><%= (i + 1)%> º</td>
+                                    <td translate="no" class="flex"> 
+                                        <img class="imagen_tabla" src="<%= usuarios[i].image%>" alt="" id="imagen_profile" height="25px" width="25px">
+                                        <p><%= usuarios[i].user_name%></p> 
+                                    </td>
+                                    <td translate="no"><%= usuarios[i].puntos%></td>
+                                    <td class="plenos" translate="no"> <%= usuarios[i].plenos %></td>
+                                </tr>
+                            <% } else { %>
                                 <tr class="fondo1">
                                     <td translate="no"><%= (i + 1)%> º</td>
                                     <td translate="no" class="flex"> 
@@ -26,6 +37,7 @@
                                     <td translate="no"><%= usuarios[i].puntos%></td>
                                     <td class="plenos" translate="no"> <%= usuarios[i].plenos %></td>
                                 </tr>
+                            <% } %> 
                         <% } %>
     
                         

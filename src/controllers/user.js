@@ -62,9 +62,7 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else{
-                    if(req.file != undefined){
-                        const result = await cloudinary.v2.uploader.upload(req.file.path)
-                    }
+                    const result =req.file != undefined ?  await cloudinary.v2.uploader.upload(req.file.path) : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg";
                     try {
                         const code = uuidv4();
                         const email = req.body.email;
