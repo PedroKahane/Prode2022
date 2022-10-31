@@ -143,7 +143,8 @@ module.exports = {
                     password : {
                         msg: 'La contraseña es incorrecta'
                     }
-                }, styles:"login.css"
+                }, styles:"login.css",
+                success:false
         })
         }
         return res.render('users/login', {
@@ -151,7 +152,8 @@ module.exports = {
                     userName:{
                         msg: 'Las credenciales son Invalidas o no ha confirmado la cuenta'
                     },
-                }, styles:"login.css"
+                }, styles:"login.css",
+                success:false
         })
     },
     update: async (req,res) => {
