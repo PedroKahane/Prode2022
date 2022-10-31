@@ -36,6 +36,11 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
                 defaultValue: 0
             },
+            token:{
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                defaultValue: null
+            },
             puntos:{
                 type: DataTypes.INTEGER,
                 allowNull: false,

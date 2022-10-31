@@ -40,6 +40,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 14px;
+    width: max-content;
 }
 .main_partidos{
     display: flex;

@@ -3,6 +3,7 @@
     <%- include ("../includes/head") %>
 <body>
     <%- include ("../includes/header") %>
+    
     <main>
         <section id="section_login">
             <div class="login">
@@ -12,7 +13,10 @@
                     <a class="menu_user border active" href="/user/login"> LOG-IN</a>
                     <a class="menu_user inactive" href="/user/register"> REGISTRATE</a>
                 </div>
-                <form action="/user/access" method="post" class="form_login" id="form_login">     
+                <form action="/user/access" method="post" class="form_login" id="form_login">
+                  <% if (success == true) { %>
+                    <p class="success"> Su cuenta ha sido confirmada, ya puede ingresar al prode</p>  
+                  <% } %>
                  <fieldset>
                   <div class="flex">
                       <input type="text" name="userName" id="userName" placeholder="Escribi tu nombre de usuario">

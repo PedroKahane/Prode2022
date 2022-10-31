@@ -241,7 +241,16 @@ fieldset{
     border: none;
     margin: 20px 25px;
 }
-
+.waitingLogin{
+    padding: 10px;
+}
+.center{
+    text-align: center;
+}
+.success{
+    font-weight: bold;
+    color:rgb(5, 148, 5);
+}
 @media (max-width:450px) {
     .login {
         width: 100%;

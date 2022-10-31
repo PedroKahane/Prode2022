@@ -7,11 +7,14 @@ const bcrypt = require('bcryptjs');
 const db = require("../data/models/index");
 const {Op} = sequelize
 const {like} = Op
+const { v4: uuidv4 } = require('uuid');
+const { getToken, getTokenData } = require('../config/jwt.config');
+const { getTemplate, sendEmail } = require('../config/mail.config');
 
 module.exports = {
     login: (req,res) => 
     {
-        res.render("users/login", {styles:"login.css"})
+        res.render("users/login", {styles:"login.css",success: false})
 
     },
     processRegister: async (req, res) => {
@@ -62,16 +65,26 @@ module.exports = {
                     if(req.file != undefined){
                         const result = await cloudinary.v2.uploader.upload(req.file.path)
                     }
-                    
-                    db.User.create( {
-                        email : req.body.email,
-                        user_name:req.body.userName,
-                        password: bcrypt.hashSync(req.body.password, 10),
-                        image: req.file != undefined ? result.secure_url : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
-                        image_id: req.file != undefined ? result.public_id : null,
-                        admin: String(req.body.email).includes("@prode") ? 1 : 0,
-                        puntos: 0
-                    })
+                    try {
+                        const code = uuidv4();
+                        const email = req.body.email;
+                        const token = getToken({ email, code });
+                        const template = getTemplate(req.body.userName, token);
+                        await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
+                        db.User.create( {
+                            email : req.body.email,
+                            user_name:req.body.userName,
+                            token: token,
+                            confirm: 0,
+                            password: bcrypt.hashSync(req.body.password, 10),
+                            image: req.file != undefined ? result.secure_url : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
+                            image_id: req.file != undefined ? result.public_id : null,
+                            admin: String(req.body.email).includes("@prode") ? 1 : 0,
+                            puntos: 0
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
                     try {
                         let partidos = await db.Partidos.findAll();
                         let usuario = await db.User.findOne({where : {user_name: req.body.userName}})
@@ -99,17 +112,14 @@ module.exports = {
                           });
                                         
                     }                    
-                    
-                    return res.redirect('/user/login');
+                    const user = await db.User.findOne({where: { email : req.body.email,}})
+                    return res.redirect('/user/confirm/' + user.user_id);
         
                 }
                 }
          catch (error) {
             console.log(error)
         }
-        
-    
-
     },
     register:(req,res) => res.render("users/register",{styles:"login.css"}),
     access: async (req,res) => {
@@ -118,7 +128,7 @@ module.exports = {
                 user_name: req.body.userName
             }
         })
-        if(userToLogin) {
+        if(userToLogin && userToLogin.confirm == 1) {
             let passwordHash = bcrypt.compareSync(req.body.password, userToLogin.password)
             if(passwordHash){
                 req.session.userLogged = userToLogin
@@ -139,7 +149,7 @@ module.exports = {
         return res.render('users/login', {
                 errors: {
                     userName:{
-                        msg: 'Las credenciales son Invalidas'
+                        msg: 'Las credenciales son Invalidas o no ha confirmado la cuenta'
                     },
                 }, styles:"login.css"
         })
@@ -295,4 +305,73 @@ module.exports = {
         res.clearCookie('user_name')
         return res.redirect("/")
     },
-  }
+    confirm: async (req,res) => {
+        try{
+       
+       // Verificar la data
+       const data = await getTokenData(req.params.token);
+
+       if(data === null) {
+            return res.json({
+                success: false,
+                msg: 'Error al obtener data'
+            });
+       }
+
+       console.log(data);
+
+       // Verificar existencia del usuario
+       const user = await db.User.findOne({ 
+        where : {
+            token: req.params.token
+        }
+        }) || null;
+
+        const { email, code } = data.data;
+
+       // Actualizar usuario
+       db.User.update({
+        confirm: 1,},
+        {
+            where: {
+                token: req.params.token
+            }
+        })
+
+        // Redireccionar a la confirmación
+        return res.render("users/login", {styles:"login.css",success:true})
+        
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            success: false,
+            msg: 'Error al confirmar usuario'
+        });
+    }
+    },
+    confirmView: async (req,res) => {
+        const user = await db.User.findOne({where:{user_id:req.params.id}})
+       res.render("users/confirm",{styles:"login.css", user})
+    },
+    sendMail: async (req,res) => {
+        try {
+            const user = await db.User.findOne({where:{user_id:req.params.id}})
+            const code = uuidv4();
+            const email = user.email;
+            const token = getToken({ email, code });
+            const template = getTemplate(user.user_name, token);
+            await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
+            await db.User.update({
+                token: token,
+            }, {
+                where: {
+                user_id: req.params.id
+                }
+            })
+            return res.redirect("/user/confirm/" + user.user_id)
+        } catch (error) {
+            console.log(error);
+        }
+    },
+        
+}

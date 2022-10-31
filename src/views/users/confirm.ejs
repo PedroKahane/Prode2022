@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../includes/head") %>
+<body>
+    <%- include ("../includes/header") %>
+    <main>
+        <section id="section_login">
+            <div class="login waitingLogin">
+                <h1 class="center">Ya se ha registrado correctamente</h1>
+                <h2 class="center">Ahora verifique su cuenta a traves de su correo electronico por favor</h2>
+                <p>Si no le llega el correo luego de 1 minuto puede:</p>
+                <a href="/user/sendMail/<%= user.user_id %>">Enviar nuevamente el correo</a>
+                <p>Si ya ha confirmado la cuenta ir a:</p>
+                <a href="/user/login">logearse</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
