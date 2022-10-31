@@ -62,12 +62,12 @@ module.exports = {
                       styles:"login.css"   
                     });
                 } else{
-                    const result =req.file != undefined ?  await cloudinary.v2.uploader.upload(req.file.path) : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg";
                     try {
                         const code = uuidv4();
                         const email = req.body.email;
                         const token = getToken({ email, code });
                         const template = getTemplate(req.body.userName, token);
+                        const result =req.file != undefined ?  await cloudinary.v2.uploader.upload(req.file.path) : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg";
                         await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
                         db.User.create( {
                             email : req.body.email,
@@ -93,11 +93,19 @@ module.exports = {
                             })
                         });
                     } catch (error) {
-                        db.User.destroy({
+                        const user = db.User.destroy({
                             where: {
                                 user_name:req.body.userName
                             }
                         })
+                        if(user.image_id != null) {
+                            try {
+                                const result = await cloudinary.v2.uploader.destroy(user.image_id)
+                                console.log(result);
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
                         console.log(error);
                         return res.render('users/register', {
                             errors: {
