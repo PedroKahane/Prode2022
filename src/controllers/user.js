@@ -66,7 +66,9 @@ module.exports = {
                         const code = uuidv4();
                         const email = req.body.email;
                         const token = getToken({ email, code });
+                        const template = getTemplate(req.body.userName, token);
                         const result =req.file != undefined ?  await cloudinary.v2.uploader.upload(req.file.path) : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg";
+                        await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
                         db.User.create( {
                             email : req.body.email,
                             user_name:req.body.userName,
@@ -90,8 +92,6 @@ module.exports = {
                                 user_id: usuario.user_id,
                             })
                         });
-                        const template = getTemplate(req.body.userName, token);
-                        await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
                     } catch (error) {
                         const user = db.User.destroy({
                             where: {
