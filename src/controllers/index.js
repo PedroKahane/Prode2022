@@ -17,7 +17,9 @@ const controller = {
         let usuarios = await db.User.findAll({order: [
           ['puntos', 'DESC'],
           ['plenos', 'DESC']
-      ]})
+      ], where : {
+        confirm: 1
+      }})
       let fechaActual = luxon.DateTime.local().toFormat("yyyy-MM-dd")
       let partidos = await db.Partidos.findAll({
         where: {

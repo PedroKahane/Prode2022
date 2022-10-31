@@ -26,7 +26,10 @@ module.exports = {
     },
     tabla: async (req,res) => {
         try {
-            let usuarios = await db.User.findAll({order: [
+            let usuarios = await db.User.findAll({
+                where: {
+                    confirm: 1
+                }, order: [
                 ['puntos', 'DESC'],
                 ['plenos', 'DESC']
             ]})
