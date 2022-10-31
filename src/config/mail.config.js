@@ -36,7 +36,7 @@ var transporter = nodemailer.createTransport({
       <body>
         <center>
         <div style="margin:15px">
-            <img src="https://images.teamtalk.com/content/uploads/2022/06/05225223/Lionel-Messi-Argentina-3.jpg" alt="">
+            <img src="https://c3.thejournal.ie/media/2022/09/soccer-sep-23-argentina-vs-honduras-390x285.jpg" alt="Messi">
             <h2>Hola ${ name }, soy Pedrako y te queria invitar a participar de mi prode.</h2>
             <h2>Para confirmar tu cuenta, ingresa al siguiente enlace:</h2>
             <a style=" margin-left: 10px;
