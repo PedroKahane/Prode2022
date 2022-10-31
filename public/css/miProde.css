@@ -113,11 +113,11 @@
 .equipo_2 p {
     text-align: left;
 }
+.mobile{
+    display: none !important;
+}
 @media (max-width: 600px) {
     .fecha{
-        display: none;
-    }
-    .img_p img {
         display: none;
     }
     .flex_center{
@@ -130,4 +130,31 @@
         font-size: 12px;
         margin-left: 15px;
     }
+    .pc{
+        display: none;
+    }
+    .mobile{
+        display: inline-block !important;
+    }
+    .equipo_1, .equipo_2{
+        width: 40%;
+    }
+    .boton{
+        width: 7%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .img_p p{
+        font-size: 12px;
+    }
+    .img_p img{
+        margin: 0px;
+    }
+}
+@media (max-width: 300px) {
+    .img_p img {
+        display: none;
+    }
+   
 }

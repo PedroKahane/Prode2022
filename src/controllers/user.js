@@ -176,7 +176,6 @@ module.exports = {
        //return res.send(req.body)
        try{
            db.User.update( {
-               email : req.body.email,
                user_name: req.body.firstName,
            }, {
                where: {

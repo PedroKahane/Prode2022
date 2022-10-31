@@ -57,10 +57,10 @@
                         <p class="perdio puntos">0</p>
                       <% }  else {%>
                         <% if (date < element.fecha && prode.equipo1 == null && prode.equipo2 == null) { %>
-                          <button type="submit" id="submit_create" class="boton">Guardar</button>
+                          <button type="submit" id="submit_create" class="boton"><p class="pc">Guardar</p> <i class="mobile fas fa-check"></i></button>
                         <% } %>
                         <% if (date < element.fecha && prode.equipo1 !=null && prode.equipo2 != null) { %>
-                              <button type="submit" id="submit_create" class="boton">Editar</button>
+                              <button type="submit" id="submit_create" class="boton"><p class="pc">Editar</p><i class="mobile fas fa-edit"></i></button>
                         <% } %>
                       <% } %>
                     </form>

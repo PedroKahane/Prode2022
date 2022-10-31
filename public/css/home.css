@@ -193,4 +193,7 @@
             font-size: 12px;
             margin-left: 15px;
         }
+        .img_p img{
+            display: none;
+        }
     }

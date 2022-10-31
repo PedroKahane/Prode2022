@@ -30,10 +30,8 @@ const storage = multer.diskStorage({
                     .isLength({min:6, max:20}).withMessage('Debe contener entre 6 y 20 caracteres'),
   ];
   const validacionesProfile = [
-    body('firstName').notEmpty().withMessage('Tenés que ingresar un nombre'),
-    body('lastName').notEmpty().withMessage('Tenés que ingresar un apellido'),
-    body('email').notEmpty().withMessage('Tenés que ingresar un correo electrónico').bail()
-                  .isEmail().withMessage('Debes ingresar un formato de correo válido'),
+    body('firstName').notEmpty().withMessage('Tenés que ingresar un nombre').bail()
+    .isLength({min:3, max:20}).withMessage('Debe contener entre 3 y 20 caracteres')
 
   ];
 
