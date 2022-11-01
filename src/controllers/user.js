@@ -113,7 +113,6 @@ module.exports = {
                           });
                                         
                     }
-                    try {
                         const code = uuidv4();
                         const email = req.body.email;
                         let token = getToken({ email, code });
@@ -127,9 +126,6 @@ module.exports = {
                                 }
                             }
                         )
-                    } catch (error) {
-                        console.log(error);
-                    }
                     const user = await db.User.findOne({where: {email : req.body.email,}})
                     return res.redirect('/user/confirm/' + user.user_id);
         
