@@ -40,7 +40,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 14px;
-    width: max-content;
+    width:inherit;
 }
 .main_partidos{
     display: flex;
@@ -82,6 +82,7 @@
     color: #eeeee4;
     border: 0px;
     padding: 5px 10px;
+    width: 14%;
     border-radius: 15px;
 }
 .boton:hover {

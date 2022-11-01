@@ -61,8 +61,9 @@
     background-color: #ececec;
     width: 100%;
     margin: 40px 20px;
-    padding: 20px 0px;
+    padding: 20px;
     max-width: 600px;
+    height: 300px;
 }
 .titulo_grupo {
     font-family: 'Montserrat', sans-serif;
@@ -98,6 +99,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 14px;
+    width: inherit;
 }
 .main_partidos{
     display: flex;
@@ -122,6 +124,8 @@
     align-items: center;
     justify-content: center;
     margin: 20px 2.5vh;
+    max-width: 600px;
+    width: 100%;
 }
 .center {
     display: flex;
@@ -155,6 +159,153 @@
     color: rgb(163, 144, 36);
     font-size: 18px;
 }
+.titulo_grupo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+.equipo_1 {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    width: 30%;
+
+}
+.equipo_2 {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 30%;
+
+}
+.equipo_1 input, .equipo_2 input{
+    width: 30px;
+    height: 20px;
+    font-size: 12px;
+    border: 1px solid #8a1538;
+    border-radius: 4px;
+}
+.equipo_1 img, .equipo_2 img{
+    margin: 5px;
+}
+.main_partidos{
+    display: flex;
+    align-items: center;
+    margin:0px;
+    justify-content: center;
+    height: 35px;
+}
+.img_p{
+    width: 85%;
+    display: flex;
+    align-items: center;
+}
+#home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.equipo_1 .img_p {
+    justify-content: flex-end;
+}
+.fecha{
+    font-size: 14px;
+    width: 75px;
+}
+.boton_form{
+    margin-left: 10px;
+    align-self: center;
+    background-color: #8a1538;
+    color: #eeeee4;
+    border: 0px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: 14%;
+    font-size: 12px;
+}
+.boton_form:hover {
+    background-color: #eeeee4;
+    color: #8a1538;
+    border: 1px solid #8a1538;
+    cursor: pointer;
+    transition: 700ms;
+}
+.img_p img{
+    width: auto;
+    height: 25px;
+}
+.gano {
+    color: rgb(0, 153, 0);
+    font-size: 18px;
+}
+.perdio {
+    color: rgb(156, 1, 1);
+    font-size: 18px;
+}
+.empato {
+    color: rgb(163, 144, 36);
+    font-size: 18px;
+}
+.equipo_1 p {
+    text-align: right;
+}
+.equipo_2 p {
+    text-align: left;
+}
+.mobile{
+    display: none !important;
+}
+#main_partidos{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+    .fecha{
+        display: none;
+    }
+    .flex_center{
+        margin: 20px 0px
+    }
+    .grupo_1 {
+        margin: 40px 5px;
+        height: 330px;
+    }
+    .puntos {
+        font-size: 12px;
+        margin-left: 15px;
+    }
+    .pc{
+        display: none;
+    }
+    .mobile{
+        display: inline-block !important;
+    }
+    .equipo_1, .equipo_2{
+        width: 40%;
+    }
+    .boton_form{
+        width: 7%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .img_p p{
+        font-size: 12px;
+    }
+    .img_p img{
+        margin: 0px;
+    }
+}
+@media (max-width: 300px) {
+    .img_p img {
+        display: none;
+    }
+   
+}
 @media (max-width: 1200px) {
     .titulo_proximo_partido{
         font-size: 20px;
@@ -178,7 +329,7 @@
         display: none;
     }
 }
-    @media (max-width:350px) {
+@media (max-width:350px) {
         #titulo_dia{
             font-size: 14px;
         } 
@@ -196,4 +347,4 @@
         .img_p img{
             display: none;
         }
-    }
+}

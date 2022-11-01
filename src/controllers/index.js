@@ -26,16 +26,58 @@ const controller = {
           fecha: fechaActual
         },include : ["equipos1","equipos2","grupos"]
     });
+    let proximosPartidos = await db.Partidos.findAll({
+      where: {
+        fecha: {
+          [Op.gt] : fechaActual
+        }
+      },include : ["equipos1","equipos2","grupos"],
+      limit: 4
+  });
       let pronosticos = await db.Pronosticos.findAll({where:{
         user_id: req.session.userLogged.user_id,
     }})
-      res.render("index", {styles:"home.css", usuarios: usuarios, partidos:partidos, fecha:fechaActual, pronosticos: pronosticos})
+      res.render("index", {styles:"home.css", usuarios: usuarios, partidos:partidos, fecha:fechaActual, pronosticos: pronosticos, proximosPartidos: proximosPartidos, date:fechaActual})
       } catch (error) {
         console.log(error);
       }
 
 
+    },
+    pronosticarPartido:(req,res) => {
+      try{
+          db.Pronosticos.update( {
+              equipo1: req.body.local,
+              equipo2: req.body.visitante
+          }, {
+              where: {
+                  user_id: req.session.userLogged.user_id,
+                  game_id:req.params.id,
+              }
+          })
+          return res.redirect('/');
+
+      } catch(error){
+          console.log(error);
+      }
+  },
+  resetPartido:(req,res) => {
+    try{
+        db.Pronosticos.update( {
+            equipo1: null,
+            equipo2: null
+        }, {
+            where: {
+                user_id: req.session.userLogged.user_id,
+                game_id:req.params.id,
+            }
+        })
+        return res.redirect('/');
+
+    } catch(error){
+        console.log(error);
     }
+}
 }
 
 module.exports = controller;
