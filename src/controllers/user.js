@@ -63,16 +63,11 @@ module.exports = {
                     });
                 } else{
                     try {
-                        const code = uuidv4();
-                        const email = req.body.email;
-                        const token = getToken({ email, code });
-                        const template = getTemplate(req.body.userName, token);
                         const result =req.file != undefined ?  await cloudinary.v2.uploader.upload(req.file.path) : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg";
-                        await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);
                         db.User.create( {
                             email : req.body.email,
                             user_name:req.body.userName,
-                            token: token,
+                            token: null,
                             confirm: 0,
                             password: bcrypt.hashSync(req.body.password, 10),
                             image: req.file != undefined ? result.secure_url : "https://res.cloudinary.com/hmc4uxpzk/image/upload/v1667155509/default_irgdp8.jpg",
@@ -86,7 +81,7 @@ module.exports = {
                     try {
                         let partidos = await db.Partidos.findAll();
                         let usuario = await db.User.findOne({where : {user_name: req.body.userName}})
-                        partidos.forEach(element => {
+                        await partidos.forEach(element => {
                             db.Pronosticos.create({
                                 game_id: element.game_id,
                                 user_id: usuario.user_id,
@@ -117,8 +112,25 @@ module.exports = {
                             styles:"login.css"   
                           });
                                         
-                    }                    
-                    const user = await db.User.findOne({where: { email : req.body.email,}})
+                    }
+                    try {
+                        const code = uuidv4();
+                        const email = req.body.email;
+                        let token = getToken({ email, code });
+                        const template = getTemplate(req.body.userName, token);
+                        await sendEmail(email, 'Confirma tu cuenta de Prode PLV', template);              
+                        await db.User.update({
+                            token: token
+                        },{
+                                where: { 
+                                    email : req.body.email,
+                                }
+                            }
+                        )
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    const user = await db.User.findOne({where: {email : req.body.email,}})
                     return res.redirect('/user/confirm/' + user.user_id);
         
                 }
