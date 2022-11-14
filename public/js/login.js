@@ -18,7 +18,7 @@ inputs.forEach(input => {
         
         if(name == "userName"){
            
-            if(value.length < 4 ){
+            if(value.length < 3 ){
                 target.classList.add("error_front")
                 target.classList.remove("success")
                 icon.classList.remove("none")
