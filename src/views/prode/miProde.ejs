@@ -34,7 +34,7 @@
           <% } %>
           <% if (usuario.goleador == null) { %>
           <form class="flex" action="/prode/updateGoleador?_method=PUT" method="POST">
-            <label for="goleador" class="label">Seleccionar Goleador: </label>
+            <label for="goleador" class="label">Escribí tu Goleador: </label>
             <input type="text" name="goleador" id="goleador" class="input_goleador_campeon">
             <% } %>
            <% if (usuario.goleador == null && date < "2022-11-21") { %>

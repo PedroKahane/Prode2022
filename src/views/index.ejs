@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="puesto_actual">
-                    <p class="titulo_proximo_partido"> Tu campeon y tu goleador:</p>
+                    <p class="titulo_proximo_partido"> Tu campeón y tu goleador:</p>
                     <% if (usuario.campeon != null) { %>
                         <form class="flex_row" action="/resetCampeon?_method=PUT" method="POST">
                         <p class="campeon">Tu campeón: <%= usuario.equipo.pais %></p>
@@ -57,7 +57,7 @@
                       <% } %>
                       <% if (usuario.goleador == null) { %>
                       <form class="flex_row" action="/updateGoleador?_method=PUT" method="POST">
-                        <label for="goleador" class="label">Seleccionar Goleador: </label>
+                        <label for="goleador" class="label">Escribí tu Goleador: </label>
                         <input type="text" name="goleador" id="goleador" class="input_goleador_campeon">
                         <% } %>
                        <% if (usuario.goleador == null && date < "2022-11-21") { %>
