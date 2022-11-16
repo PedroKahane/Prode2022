@@ -18,15 +18,55 @@
                                 <p class="descripcion_proximo_partido"><%= usuarios[i].puntos %></p>
                             </div>
                             <a href="/prode/tabla" class="boton">Ir a la tabla</a>
-                        </div>
                          
                         <% } %>
                     <% } %>
+                </div>
                 <div class="puesto_actual">
                     <p class="titulo_proximo_partido"> Inscripcion al Prode:</p>
                     <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source="button"> </script>
 
 
+                </div>
+                <div class="puesto_actual">
+                    <p class="titulo_proximo_partido"> Tu campeon y tu goleador:</p>
+                    <% if (usuario.campeon != null) { %>
+                        <form class="flex_row" action="/resetCampeon?_method=PUT" method="POST">
+                        <p class="campeon">Tu campeón: <%= usuario.equipo.pais %></p>
+                      <% } %>
+                      <% if (usuario.campeon == null) { %>
+                      <form class="flex_row" action="/updateCampeon?_method=PUT" method="POST">
+                        <label for="campeon" class="label">Seleccionar campeón:</label>
+                        <select required name="campeon" id="campeon" class="input_goleador_campeon">
+                          <option value="">Seleccionar campeón</option>
+                          <% equipos.forEach(equipo => { %>
+                              <option value="<%= equipo.id %>"><%= equipo.pais %></option>
+                          <% }) %>
+                        </select>
+                      <% } %>
+                       <% if (usuario.campeon == null && date < "2022-11-21") { %>
+                        <button type="submit" id="submit_create" class="boton_form"><p class="pc">Guardar</p> <i class="mobile fas fa-check"></i></button>
+                      <% } %>
+                      <% if (usuario.campeon != null && date < "2022-11-21") { %>
+                            <button type="submit" id="submit_create" class="boton_form"><p class="pc">Editar</p><i class="mobile fas fa-edit"></i></button>
+                      <% } %>
+                      </form>
+                      <% if (usuario.goleador != null) { %>
+                        <form class="flex_row" action="/resetGoleador?_method=PUT" method="POST">
+                        <p class="campeon">Tu Goleador: <%= usuario.goleador %></p>
+                      <% } %>
+                      <% if (usuario.goleador == null) { %>
+                      <form class="flex_row" action="/updateGoleador?_method=PUT" method="POST">
+                        <label for="goleador" class="label">Seleccionar Goleador: </label>
+                        <input type="text" name="goleador" id="goleador" class="input_goleador_campeon">
+                        <% } %>
+                       <% if (usuario.goleador == null && date < "2022-11-21") { %>
+                        <button type="submit" id="submit_create" class="boton_form"><p class="pc">Guardar</p> <i class="mobile fas fa-check"></i></button>
+                      <% } %>
+                      <% if (usuario.goleador != null && date < "2022-11-21") { %>
+                            <button type="submit" id="submit_create" class="boton_form"><p class="pc">Editar</p><i class="mobile fas fa-edit"></i></button>
+                      <% } %>
+                      </form>
                 </div>
             </div>
             <div id="main_partidos">

@@ -16,10 +16,16 @@ module.exports = {
             let grupos = await db.Grupos.findAll({where: {
                 activo: 1,
             }})
+            let  equipos =  await db.Equipos.findAll()
             let pronosticos = await db.Pronosticos.findAll({where:{
                 user_id: req.session.userLogged.user_id,
             }})
-            res.render('prode/miProde',{styles: "miProde.css", partidos: partidos, grupos: grupos,date: fecha, pronosticos: pronosticos});
+            let usuario = await db.User.findOne( {where: {
+                user_id: req.session.userLogged.user_id,
+            }, include:
+            ['equipo']
+        })
+            res.render('prode/miProde',{styles: "miProde.css", partidos: partidos, grupos: grupos,date: fecha, pronosticos: pronosticos, equipos: equipos, usuario: usuario});
     } catch (error) {
         console.log(error);
     }
@@ -64,6 +70,66 @@ module.exports = {
                 where: {
                     user_id: req.session.userLogged.user_id,
                     game_id:req.params.id,
+                }
+            })
+            return res.redirect('/prode/miprode');
+
+        } catch(error){
+            console.log(error);
+        }
+    },
+    pronosticarCampeon:(req,res) => {
+        try{
+            db.User.update( {
+                campeon: req.body.campeon
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id,
+                }
+            })
+            return res.redirect('/prode/miprode');
+
+        } catch(error){
+            console.log(error);
+        }
+    },
+    resetCampeon:(req,res) => {
+        try{
+            db.User.update( {
+                campeon: null,
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id,
+                }
+            })
+            return res.redirect('/prode/miprode');
+
+        } catch(error){
+            console.log(error);
+        }
+    },
+    pronosticarGoleador:(req,res) => {
+        try{
+            db.User.update( {
+                goleador: req.body.goleador
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id,
+                }
+            })
+            return res.redirect('/prode/miprode');
+
+        } catch(error){
+            console.log(error);
+        }
+    },
+    resetGoleador:(req,res) => {
+        try{
+            db.User.update( {
+                goleador: null,
+            }, {
+                where: {
+                    user_id: req.session.userLogged.user_id,
                 }
             })
             return res.redirect('/prode/miprode');

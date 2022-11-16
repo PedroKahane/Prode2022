@@ -30,6 +30,10 @@ module.exports = function(sequelize, DataTypes) {
             as: "equipos2",
             foreignKey: "equipo2",
         })
+        Equipos.hasMany(models.User, {
+            as: "equipo",
+            foreignKey: "campeon",
+        })
     }
 
     return Equipos
