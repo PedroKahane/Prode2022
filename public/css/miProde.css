@@ -120,6 +120,7 @@
 .label{
     color: #eeeee4;
     margin: 5px;
+    width: 200px;
 }
 #goleador_campeon{
     display: flex;
@@ -201,6 +202,7 @@
     }
     .label{
         font-size: 12px;
+        width: unset;
     }
     .campeon{
         color: #eeeee4;
