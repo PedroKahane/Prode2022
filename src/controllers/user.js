@@ -81,6 +81,9 @@ module.exports = {
                     try {
                         let partidos = await db.Partidos.findAll();
                         let usuario = await db.User.findOne({where : {user_name: req.body.userName}})
+                        if(usuario == null){
+                            usuario = await db.User.findOne({where : {user_name: req.body.userName}})
+                        }
                         await partidos.forEach(element => {
                             db.Pronosticos.create({
                                 game_id: element.game_id,
