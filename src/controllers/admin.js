@@ -78,61 +78,75 @@ module.exports = {
                         game_id: req.params.id
                     }
                 })
-                pronosticos.forEach(async element => {
-                    //res.send(element)
-                    let user = await db.User.findOne({
+                try {
+                    pronosticos.forEach(async element => {
+                        //res.send(element)
+                        let user = await db.User.findOne({
+                            where: {
+                                user_id: element.user_id
+                            }
+                        })
+    
+                        if(element.equipo1!=null && element.equipo2!=null) {
+                            let resPartido = (partido.goles1 - partido.goles2)
+                            let resProde = (element.equipo1 - element.equipo2)
+                            if(element.equipo1 == partido.goles1 && element.equipo2 == partido.goles2) {
+                                db.User.update({
+                                    puntos: (user.puntos + 3),
+                                    plenos: (user.plenos + 1)
+                                }, {
+                                    where: {
+                                        user_id: element.user_id
+                                    }
+                                })
+                                db.Pronosticos.update({
+                                    puntos: 3
+                                }, {
+                                    where: {
+                                        game_id: req.params.id,
+                                        user_id: element.user_id
+                                    }
+                                })
+                            } else if((resPartido === 0 && resProde === 0) || (resPartido > 0 && resProde > 0) ||(resPartido < 0 && resProde < 0)) {
+                                db.User.update({
+                                    puntos: (user.puntos + 1),
+                                }, {
+                                    where: {
+                                        user_id: element.user_id
+                                    }
+                                })
+                                db.Pronosticos.update({
+                                    puntos: 1
+                                }, {
+                                    where: {
+                                        game_id: req.params.id,
+                                        user_id: element.user_id
+                                    }
+                                })
+                            } else {
+                                db.Pronosticos.update({
+                                    puntos: 0
+                                }, {
+                                    where: {
+                                        game_id: req.params.id,
+                                        user_id: element.user_id
+                                    }
+                                })
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.log(error);
+                    db.Partidos.update({
+                        goles1:null,
+                        goles2:null,
+                    }, {
                         where: {
-                            user_id: element.user_id
+                            game_id: req.params.id
                         }
                     })
-                    if(element.equipo1!=null && element.equipo2!=null) {
-                        let resPartido = (partido.goles1 - partido.goles2)
-                        let resProde = (element.equipo1 - element.equipo2)
-                        if(element.equipo1 == partido.goles1 && element.equipo2 == partido.goles2) {
-                            db.User.update({
-                                puntos: (user.puntos + 3),
-                                plenos: (user.plenos + 1)
-                            }, {
-                                where: {
-                                    user_id: element.user_id
-                                }
-                            })
-                            db.Pronosticos.update({
-                                puntos: 3
-                            }, {
-                                where: {
-                                    game_id: req.params.id,
-                                    user_id: element.user_id
-                                }
-                            })
-                        } else if((resPartido === 0 && resProde === 0) || (resPartido > 0 && resProde > 0) ||(resPartido < 0 && resProde < 0)) {
-                            db.User.update({
-                                puntos: (user.puntos + 1),
-                            }, {
-                                where: {
-                                    user_id: element.user_id
-                                }
-                            })
-                            db.Pronosticos.update({
-                                puntos: 1
-                            }, {
-                                where: {
-                                    game_id: req.params.id,
-                                    user_id: element.user_id
-                                }
-                            })
-                        } else {
-                            db.Pronosticos.update({
-                                puntos: 0
-                            }, {
-                                where: {
-                                    game_id: req.params.id,
-                                    user_id: element.user_id
-                                }
-                            })
-                        }
-                    }
-                });
+                }
+               
             }
             res.redirect('/admin/resultados')
         } catch (error) {
