@@ -12,7 +12,7 @@ module.exports = {
     miProde: async (req,res) =>{
         try {
             let partidos = await db.Partidos.findAll({include:["equipos1","equipos2","grupos"]})
-            let fecha = 2022-11-19//luxon.DateTime.local().setZone("UTC-3").toFormat("yyyy-MM-dd")
+            let fecha = "2022-11-19"//luxon.DateTime.local().setZone("UTC-3").toFormat("yyyy-MM-dd")
             let grupos = await db.Grupos.findAll({where: {
                 activo: 1,
             }})
