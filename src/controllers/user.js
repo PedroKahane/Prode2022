@@ -108,7 +108,7 @@ module.exports = {
                         return res.render('users/register', {
                             errors: {
                                 email: {
-                                    msg: 'Ha habido un error en el proceso de registro, intente nuevamente :)'
+                                    msg: 'Hubo un error en el proceso de registro, presiona F5 y vuelva a intentar por favor'
                                 }
                             },
                             oldData: req.body,
