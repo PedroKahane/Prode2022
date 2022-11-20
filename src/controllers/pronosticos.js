@@ -19,6 +19,7 @@ module.exports = {
             let pronosticos = await db.Pronosticos.findAll({where:{
                 user_id: req.session.userLogged.user_id,
             }})
+            console.log(fecha);
             res.render('prode/miProde',{styles: "miProde.css", partidos: partidos, grupos: grupos,date: fecha, pronosticos: pronosticos});
     } catch (error) {
         console.log(error);
