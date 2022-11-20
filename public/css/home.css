@@ -4,7 +4,7 @@
     background-color: #ececec;
     align-items: center;
     max-width: 450px;
-    margin: 10px;
+    margin: 20px;
     width: 100%;
     justify-content: center;
     height: 300px;
@@ -34,7 +34,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    height: 600px;
+    padding: 80px 0px;
 }
 .boton{
     width: 50%;
@@ -222,7 +222,6 @@
     border: 0px;
     padding: 5px 10px;
     border-radius: 15px;
-    width: 14%;
     font-size: 12px;
 }
 .boton_form:hover {
@@ -262,6 +261,31 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+.label{
+    color: #8a1538;
+    margin: 5px;
+}
+#goleador_campeon{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.input_goleador_campeon {
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+.campeon{
+    color: #8a1538;
+    font-size: 24px;
+}
+.flex_row{
+    display:flex;
+    flex-direction: row;
+    margin: 5px;
+    max-width: 600px;
 }
 @media (max-width: 600px) {
     .fecha{
@@ -327,6 +351,13 @@
     }
     .img_p img{
         display: none;
+    }
+    .label{
+        font-size: 14px;
+        width: 30%;
+    }
+    .input_goleador_campeon{
+        width: 60%;
     }
 }
 @media (max-width:350px) {

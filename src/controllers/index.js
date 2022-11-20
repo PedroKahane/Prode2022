@@ -37,7 +37,13 @@ const controller = {
       let pronosticos = await db.Pronosticos.findAll({where:{
         user_id: req.session.userLogged.user_id,
     }})
-      res.render("index", {styles:"home.css", usuarios: usuarios, partidos:partidos, fecha:fechaActual, pronosticos: pronosticos, proximosPartidos: proximosPartidos, date:fechaActual})
+    let usuario = await db.User.findOne( {where: {
+      user_id: req.session.userLogged.user_id,
+  }, include:
+  ['equipo']
+})
+let  equipos =  await db.Equipos.findAll()
+      res.render("index", {styles:"home.css", usuarios: usuarios, partidos:partidos, fecha:fechaActual, pronosticos: pronosticos, proximosPartidos: proximosPartidos, date:fechaActual, usuario: usuario, equipos: equipos})
       } catch (error) {
         console.log(error);
       }
@@ -77,6 +83,66 @@ const controller = {
     } catch(error){
         console.log(error);
     }
+},
+pronosticarCampeon:(req,res) => {
+  try{
+      db.User.update( {
+          campeon: req.body.campeon
+      }, {
+          where: {
+              user_id: req.session.userLogged.user_id,
+          }
+      })
+      return res.redirect('/');
+
+  } catch(error){
+      console.log(error);
+  }
+},
+resetCampeon:(req,res) => {
+  try{
+      db.User.update( {
+          campeon: null,
+      }, {
+          where: {
+              user_id: req.session.userLogged.user_id,
+          }
+      })
+      return res.redirect('/');
+
+  } catch(error){
+      console.log(error);
+  }
+},
+pronosticarGoleador:(req,res) => {
+  try{
+      db.User.update( {
+          goleador: req.body.goleador
+      }, {
+          where: {
+              user_id: req.session.userLogged.user_id,
+          }
+      })
+      return res.redirect('/');
+
+  } catch(error){
+      console.log(error);
+  }
+},
+resetGoleador:(req,res) => {
+  try{
+      db.User.update( {
+          goleador: null,
+      }, {
+          where: {
+              user_id: req.session.userLogged.user_id,
+          }
+      })
+      return res.redirect('/');
+
+  } catch(error){
+      console.log(error);
+  }
 }
 }
 

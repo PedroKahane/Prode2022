@@ -50,7 +50,14 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
-            }
+            },
+            campeon: {
+                type: DataTypes.BIGINT(10),
+            },
+            goleador:{
+                type: DataTypes.STRING,
+                allowNull: true
+            },
     },{
         tableName: "usuarios",
         tiemstamps: false
@@ -59,6 +66,10 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Pronosticos, {
             as: "usuario",
             foreignKey: "user_id",
+        })
+        User.belongsTo(models.Equipos, {
+            as: "equipo",
+            foreignKey: "campeon",
         })
     }
 
