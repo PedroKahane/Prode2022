@@ -163,7 +163,7 @@ module.exports = {
                 }, styles:"login.css",
                 success:false
             })
-        } else if(userToLogin.confirm == 0) {
+        } else if(useruserToLogin != null && userToLogin.confirm == 0) {
             return res.redirect('/user/confirm/' + userToLogin.user_id);
         }
         return res.render('users/login', {
