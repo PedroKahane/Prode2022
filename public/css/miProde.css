@@ -98,15 +98,15 @@
 }
 .gano {
     color: rgb(0, 153, 0);
-    font-size: 18px;
+    font-size: 22px;
 }
 .perdio {
     color: rgb(156, 1, 1);
-    font-size: 18px;
+    font-size: 22px;
 }
 .empato {
     color: rgb(163, 144, 36);
-    font-size: 18px;
+    font-size: 22px;
 }
 .equipo_1 p {
     text-align: right;
@@ -171,7 +171,7 @@
         margin: 40px 5px;
     }
     .puntos {
-        font-size: 12px;
+        font-size: 15px;
         margin-left: 15px;
     }
     .pc{
