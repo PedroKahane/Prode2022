@@ -78,9 +78,9 @@ module.exports = {
                         game_id: req.params.id
                     }
                 })
-                try {
-                    pronosticos.forEach(async element => {
-                        //res.send(element)
+                pronosticos.forEach(async element => {
+                    try {
+                        console.log(element)
                         let user = await db.User.findOne({
                             where: {
                                 user_id: element.user_id
@@ -134,18 +134,18 @@ module.exports = {
                                 })
                             }
                         }
-                    });
-                } catch (error) {
-                    console.log(error);
-                    db.Partidos.update({
-                        goles1:null,
-                        goles2:null,
-                    }, {
-                        where: {
-                            game_id: req.params.id
-                        }
-                    })
-                }
+                    } catch (error) {
+                        console.log(error);
+                        db.Partidos.update({
+                            goles1:null,
+                            goles2:null,
+                        }, {
+                            where: {
+                                game_id: req.params.id
+                            }
+                        })
+                    }
+                });
                
             }
             res.redirect('/admin/resultados')
