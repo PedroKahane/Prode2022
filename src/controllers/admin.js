@@ -78,8 +78,8 @@ module.exports = {
                         game_id: req.params.id
                     }
                 })
-                pronosticos.forEach(async element => {
-                    try {
+                try {
+                    pronosticos.forEach(async element => {
                         console.log(element)
                         let user = await db.User.findOne({
                             where: {
@@ -98,15 +98,16 @@ module.exports = {
                                     where: {
                                         user_id: element.user_id
                                     }
-                                })
-                                db.Pronosticos.update({
-                                    puntos: 3
-                                }, {
-                                    where: {
-                                        game_id: req.params.id,
-                                        user_id: element.user_id
-                                    }
-                                })
+                                }).then(
+                                    db.Pronosticos.update({
+                                        puntos: 3
+                                    }, {
+                                        where: {
+                                            game_id: req.params.id,
+                                            user_id: element.user_id
+                                        }
+                                    })
+                                )
                             } else if((resPartido === 0 && resProde === 0) || (resPartido > 0 && resProde > 0) ||(resPartido < 0 && resProde < 0)) {
                                 db.User.update({
                                     puntos: (user.puntos + 1),
@@ -114,15 +115,16 @@ module.exports = {
                                     where: {
                                         user_id: element.user_id
                                     }
-                                })
-                                db.Pronosticos.update({
-                                    puntos: 1
-                                }, {
-                                    where: {
-                                        game_id: req.params.id,
-                                        user_id: element.user_id
-                                    }
-                                })
+                                }).then(
+                                    db.Pronosticos.update({
+                                        puntos: 1
+                                    }, {
+                                        where: {
+                                            game_id: req.params.id,
+                                            user_id: element.user_id
+                                        }
+                                    })
+                                )
                             } else {
                                 db.Pronosticos.update({
                                     puntos: 0
@@ -134,18 +136,18 @@ module.exports = {
                                 })
                             }
                         }
-                    } catch (error) {
-                        console.log(error);
-                        db.Partidos.update({
-                            goles1:null,
-                            goles2:null,
-                        }, {
-                            where: {
-                                game_id: req.params.id
-                            }
-                        })
-                    }
-                });
+                    });
+                } catch (error) {
+                    console.log(error);
+                    db.Partidos.update({
+                        goles1:null,
+                        goles2:null,
+                    }, {
+                        where: {
+                            game_id: req.params.id
+                        }
+                    })
+                }
                
             }
             res.redirect('/admin/resultados')
