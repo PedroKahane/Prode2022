@@ -51,7 +51,7 @@ module.exports = {
     },
     cargarResultado: async (req,res) => {
         try {
-            let partido = db.Partidos.update({
+            db.Partidos.update({
                 goles1:req.body.local,
                 goles2:req.body.visitante,
             }, {
@@ -64,7 +64,13 @@ module.exports = {
                         game_id: req.params.id
                     }
                 })
+              
             )
+            let partido = await db.Partidos.findOne({
+                where: {
+                    game_id: req.params.id
+                }
+            })
             //res.send(partido)
             if(partido.goles1!=null && partido.goles2!=null){
                 let pronosticos = await db.Pronosticos.findAll({
