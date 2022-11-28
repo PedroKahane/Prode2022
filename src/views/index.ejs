@@ -24,8 +24,11 @@
                 </div>
                 <div class="puesto_actual">
                     <p class="titulo_proximo_partido"> Inscripcion al Prode:</p>
-                    <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source="button"> </script>
-
+                    <% if (locals.userLogged.pago == 1) { %>
+                        <p class="gracias">TU PAGO YA FUE RECIBIDO</p>
+                    <% } else { %>
+                        <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="337647185-15e38db0-f949-4e03-acf2-b56acc0769df" data-source="button"> </script>
+                    <% } %>    
 
                 </div>
                 <div class="puesto_actual">

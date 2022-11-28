@@ -287,6 +287,12 @@
     margin: 5px;
     max-width: 600px;
 }
+.gracias{
+    font-size: 26px;
+    padding: 15px 5%;
+    text-align: center;
+    color:#2571a3;
+}
 @media (max-width: 600px) {
     .fecha{
         display: none;

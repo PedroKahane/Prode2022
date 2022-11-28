@@ -58,6 +58,11 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING,
                 allowNull: true
             },
+            pago:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
     },{
         tableName: "usuarios",
         tiemstamps: false
