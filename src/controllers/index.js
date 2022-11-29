@@ -20,7 +20,7 @@ const controller = {
       ], where : {
         confirm: 1
       }})
-      let fechaActual = luxon.DateTime.local().setZone("UTC-3").toFormat("yyyy-MM-dd")
+      let fechaActual = luxon.DateTime.local().setZone("UTC-7").toFormat("yyyy-MM-dd")
       let partidos = await db.Partidos.findAll({
         where: {
           fecha: fechaActual
