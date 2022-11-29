@@ -71,6 +71,16 @@ module.exports = {
                     game_id: req.params.id
                 }
             })
+            partido = await db.Partidos.findOne({
+                where: {
+                    game_id: req.params.id
+                }
+            })
+            partido = await db.Partidos.findOne({
+                where: {
+                    game_id: req.params.id
+                }
+            })
             //res.send(partido)
             if(partido.goles1!=null && partido.goles2!=null){
                 let pronosticos = await db.Pronosticos.findAll({
