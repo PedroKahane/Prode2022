@@ -26,6 +26,7 @@
                 <% partidos.forEach(partido => { %>
                     <div class="contenedor_partido">
                     <p class="ronda_partido"> <%= partido.grupos.nombre %> </p>
+                    <p class="ronda_partido"> <%= partido.fecha %> </p>
                         <% if (partido.equipo1 == null && partido.equipo_2 == null) { %>
                             <form action="/admin/partidos/update/<%= partido.game_id %>?_method=PUT" method="POST" class="flex">
                             <% for(let index = 1; index < 3; index++ ) { %>

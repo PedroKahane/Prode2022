@@ -51,7 +51,7 @@
           <div class="grupo_1">
             <p class="titulo_grupo">Grupo <%= grupo.nombre %> </p>
             <% partidos.forEach(element => { %>
-              <% if (element.grupos.nombre == grupo.nombre) { %>
+              <% if (element.grupos.nombre == grupo.nombre && element.equipo1 != null && element.equipo2 != null) { %>
                 <% pronosticos.forEach(prode => { %>
                   <% if (prode.game_id == element.game_id && prode.user_id == locals.userLogged.user_id ) { %>
                     <% if (prode.equipo1 == null && prode.equipo2 == null) { %>
