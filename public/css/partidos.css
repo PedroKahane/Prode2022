@@ -11,7 +11,7 @@ main{
 #contenedor_partidos{
     background-color: #eeeee4;
     color: #8a1538;
-    max-width: 550px;
+    max-width: 750px;
     margin: 45px 0px;
     padding: 15px;
     width: 100%;
@@ -22,6 +22,10 @@ main{
     height: 45px;
     width: 100%;
     margin: 5px;
+    justify-content: center;
+}
+.contenedor_partido p{
+    margin: 0px 10px;
 }
 .equipos{
     font-size: 12px;
@@ -38,6 +42,7 @@ main{
 }
 .ronda_partido{
     font-size: 14px;
+    font-weight: bold;
 }
 .boton{
     margin-left: 10px;
@@ -73,11 +78,11 @@ main{
     font-weight: bold;
     margin: 20px 0px;
 }
+.flex_column p{
+    text-align: center;
+}
 @media (max-width: 500px) {
-    .contenedor_partido{
-        flex-direction: column;
-        margin: 25px 0px;
-    }
+    
     .flex{
         width: 100%;
     }
@@ -88,6 +93,9 @@ main{
         padding: 15px 0px;
     }
     .ronda_partido{
-        font-size: 16px;
+        font-size: 12px;
+    }
+    .flex_column p {
+        font-size: 10px;
     }
 }

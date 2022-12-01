@@ -14,7 +14,7 @@ module.exports = {
             let grupos = await db.Grupos.findAll({where: {
                 activo:0
             }})
-            let partidosFiltrados = partidos.filter(partido=> partido.grupos.activo === 0)
+            let partidosFiltrados = partidos.filter(partido=> partido.grupos.KnockStage === 1)
             //res.send(partidosFiltrados)
             return res.render('admin/partidos', {styles: "partidos.css",partidos:partidosFiltrados, equipos:equipos, grupos});
 

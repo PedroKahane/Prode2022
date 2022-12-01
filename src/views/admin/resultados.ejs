@@ -12,7 +12,7 @@
             <div class="grupo_1">
               <p class="titulo_grupo">Grupo <%= grupo.nombre %> </p>
               <% partidos.forEach(element => { %>
-                <% if (element.grupos.nombre == grupo.nombre) { %>
+                <% if (element.grupos.nombre == grupo.nombre && element.equipo1 != null && element.equipo2 != null) { %>
                     <% if (element.goles1 == null && element.goles2 == null) { %>
                         <form class="main_partidos" action="/admin/partido/resultado/<%= element.game_id %>?_method=PUT" method="POST">
                     <% } else { %>

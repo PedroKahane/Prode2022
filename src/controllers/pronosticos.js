@@ -15,7 +15,7 @@ module.exports = {
             let fecha = luxon.DateTime.local().setZone("UTC-7").toFormat("yyyy-MM-dd")
             let grupos = await db.Grupos.findAll({where: {
                 activo: 1,
-            }})
+            }, order: [['id', 'DESC']]})
             let  equipos =  await db.Equipos.findAll()
             let pronosticos = await db.Pronosticos.findAll({where:{
                 user_id: req.session.userLogged.user_id,
