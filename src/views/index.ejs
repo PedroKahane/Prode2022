@@ -36,6 +36,11 @@
                     <% if (usuario.campeon != null) { %>
                         <form class="flex_row" action="/resetCampeon?_method=PUT" method="POST">
                         <p class="campeon">Tu campeón: <%= usuario.equipo.pais %></p>
+                        <% if (usuario.PuntosCampeon == 3) { %>
+                            <p class="gano puntos">+3</p>
+                        <% } else if (usuario.PuntosCampeon == 0) { %>
+                            <p class="perdio puntos">+0</p>
+                        <% } %>
                       <% } %>
                       <% if (usuario.campeon == null) { %>
                       <form class="flex_row" action="/updateCampeon?_method=PUT" method="POST">
@@ -57,6 +62,11 @@
                       <% if (usuario.goleador != null) { %>
                         <form class="flex_row" action="/resetGoleador?_method=PUT" method="POST">
                         <p class="campeon">Tu Goleador: <%= usuario.goleador %></p>
+                        <% if (usuario.PuntosGoleador == 5) { %>
+                            <p class="gano puntos">+5</p>
+                        <% } else if (usuario.PuntosGoleador == 0) { %>
+                            <p class="perdio puntos">+0</p>
+                        <% } %>
                       <% } %>
                       <% if (usuario.goleador == null) { %>
                       <form class="flex_row" action="/updateGoleador?_method=PUT" method="POST">

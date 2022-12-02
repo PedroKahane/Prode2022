@@ -280,12 +280,14 @@
 .campeon{
     color: #8a1538;
     font-size: 24px;
+    margin-right: 8px;
 }
 .flex_row{
     display:flex;
     flex-direction: row;
     margin: 5px;
     max-width: 600px;
+    align-items: center;
 }
 .gracias{
     font-size: 26px;

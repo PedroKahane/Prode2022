@@ -63,6 +63,16 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false,
                 defaultValue: 0
             },
+            PuntosCampeon:{
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                defaultValue: null
+            },  
+            PuntosGoleador:{
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                defaultValue: null
+            },  
     },{
         tableName: "usuarios",
         tiemstamps: false

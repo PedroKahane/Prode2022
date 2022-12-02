@@ -132,6 +132,7 @@
     flex-direction: row;
     margin: 5px;
     max-width: 600px;
+    align-items: center;
 }
 .input_goleador_campeon {
     width: 200px;
@@ -142,6 +143,7 @@
 .campeon{
     color: #eeeee4;
     font-size: 32px;
+    margin-right: 10px;
 }
 .boton_blanco{
     margin-left: 10px;
@@ -160,6 +162,10 @@
     transition: 700ms;
 }
 
+.campeon_goleador{
+    color: #eeeee4;
+    font-size: 26px;
+}
 @media (max-width: 600px) {
     .fecha{
         display: none;
@@ -207,6 +213,9 @@
     .campeon{
         color: #eeeee4;
         font-size: 18px;
+    }
+    .campeon_goleador{
+        font-size: 16px;
     }
 }
 @media (max-width: 300px) {
