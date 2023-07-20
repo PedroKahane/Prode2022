@@ -12,7 +12,7 @@ let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(process.env.DATABASE, process.env.USERNAME, process.env.PASSWORD, config);
+  sequelize = new Sequelize(process.env.DATABASE_DB, process.env.USERNAME_DB, process.env.PASSWORD_DB, config);
 }
 
 fs
